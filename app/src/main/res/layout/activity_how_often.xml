@@ -105,7 +105,7 @@
         android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
-        android:text="Humble Pie"
+        android:text="Teamwork"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         app:layout_constraintBottom_toTopOf="@+id/textView10"
         app:layout_constraintStart_toStartOf="parent" />
@@ -116,7 +116,7 @@
         android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
-        android:text="Clean Insults"
+        android:text="Poetry Quotes"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         app:layout_constraintBottom_toTopOf="@+id/textView11"
         app:layout_constraintStart_toStartOf="parent" />
@@ -127,7 +127,7 @@
         android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
-        android:text="Movie Quotes"
+        android:text="Love"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintStart_toStartOf="parent" />
