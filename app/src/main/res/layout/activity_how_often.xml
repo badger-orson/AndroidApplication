@@ -7,7 +7,7 @@
     tools:context="com.example.badge.androidapplication.HowOftenActivity">
 
     <TextView
-        android:id="@+id/Once a"
+        android:id="@+id/Message"
         android:layout_width="332dp"
         android:layout_height="65dp"
         android:layout_marginBottom="8dp"
@@ -72,10 +72,8 @@
         android:id="@+id/checkBox2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/checkBox3"
-        app:layout_constraintStart_toEndOf="@+id/textView3" />
+        tools:layout_editor_absoluteX="205dp"
+        tools:layout_editor_absoluteY="164dp" />
 
     <TextView
         android:id="@+id/textView7"

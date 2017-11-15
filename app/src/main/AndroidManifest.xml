@@ -16,7 +16,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SelectCategoryActivity" />
         <activity android:name=".HowOftenActivity" />
         <activity android:name=".EditCategories"></activity>
     </application>
