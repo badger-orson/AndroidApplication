@@ -3,6 +3,8 @@ package com.example.badge.androidapplication.Models;
 import java.util.List;
 
 /**
+ * This is a class that creates the info for a new user.
+ *
  * Created by badge on 19-Nov-17.
  */
 
@@ -10,7 +12,7 @@ public class User {
     String userName;
     String emailAddress;
     String phoneNumber;
-    List<String> Categories;
+    List<String> categories;
     String frequency;
 
     public String getEmailAddress() {
@@ -38,11 +40,11 @@ public class User {
     }
 
     public List<String> getCategories() {
-        return Categories;
+        return categories;
     }
 
     public void setCategories(List<String> categories) {
-        Categories = categories;
+        categories = categories;
     }
 
     public String getFrequency() {
@@ -52,4 +54,27 @@ public class User {
     public void setFrequency(String frequency) {
         this.frequency = frequency;
     }
+
+
+
+    //Non-default constructor
+
+    /**
+     * This is a non default construtor to create a new user. passing in the necessary values.
+     * @param userName
+     * @param emailAddress
+     * @param phoneNumber
+     * @param categories
+     * @param frequency
+     */
+    public void createNewUser(String userName, String emailAddress, String phoneNumber, List<String> categories, String frequency) {
+
+        this.userName = userName;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.categories = categories;
+        this.frequency = frequency;
+
+    }
+
 }

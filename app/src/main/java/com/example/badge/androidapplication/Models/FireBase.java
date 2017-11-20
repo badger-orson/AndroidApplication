@@ -29,6 +29,11 @@ public class FireBase {
         mDataBase.child("Categories/" + category + "/Quotes/").setValue(quote);
     }
 
+    public static String getCurrentDBInfo(){
+
+        return "This is some quote by a useless thingymajig......";
+    }
+
 
     /**
      * This will add a new user to the DB underneath the User/{uniqueID}
@@ -40,9 +45,4 @@ public class FireBase {
         mDataBase.child("Users/").setValue(user);
     }
 
-
-    public static String getCurrentDBInfo(){
-
-        return "This is some quote by a useless thingymajig......";
-    }
 }
