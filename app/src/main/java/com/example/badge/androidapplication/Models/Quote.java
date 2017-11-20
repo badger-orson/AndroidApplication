@@ -9,7 +9,7 @@ public class Quote {
     private String quoteSource;
     private String imageURL;
 
-    //Default Constructor
+    //Default Constructors
     public Quote() {
         quoteText = "no text";
         quoteSource = "unknown";
