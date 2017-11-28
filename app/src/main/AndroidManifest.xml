@@ -18,8 +18,7 @@
         </activity>
         <activity android:name=".HowOftenActivity" />
         <activity android:name=".Browse" />
-        <activity android:name=".SignUp" />
-        <activity android:name=".QuoteDisplay"></activity>
+        <activity android:name=".SignUp"></activity>
     </application>
 
 </manifest>
