@@ -1,5 +1,8 @@
 package com.example.badge.androidapplication.Models;
 
+import android.app.AlertDialog;
+import android.widget.Toast;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -24,9 +27,9 @@ public class FireBase {
      * @param category
      * @return
      */
-    public void addNewQuote(Quote quote, String category){
+    public void addNewQuote(Quote quote, QuoteCategory category){
         mDataBase = FirebaseDatabase.getInstance().getReference();
-        mDataBase.child("Categories/" + category + "/Quotes/").setValue(quote);
+        mDataBase.child("Categories/" + category + "/Quotes/").push().setValue(quote);
     }
 
     public static String getCurrentDBInfo(){
@@ -42,7 +45,14 @@ public class FireBase {
      */
     public void addNewUser(User user){
         mDataBase = FirebaseDatabase.getInstance().getReference();
-        mDataBase.child("Users/").setValue(user);
+        String key = user.userName.toString() + "/";
+        try {
+            mDataBase.child("Users/").child(key).setValue(user);
+        }
+        catch (Exception e){
+            System.out.println(e.toString());
+
+        }
     }
 
 }
