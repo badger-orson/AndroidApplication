@@ -51,7 +51,7 @@
         android:layout_width="150dp"
         android:layout_height="75dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         android:onClick="nextView"
         android:text="Funny"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button"
@@ -64,7 +64,7 @@
         android:layout_height="75dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="20dp"
         android:onClick="nextView"
         android:text="Teamwork"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button"
@@ -85,7 +85,8 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button"
         app:layout_constraintBottom_toTopOf="@+id/button11"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/button6"
+        app:layout_constraintVertical_bias="0.18" />
 
     <Button
         android:id="@+id/button9"
@@ -100,8 +101,10 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button"
         app:layout_constraintBottom_toTopOf="@+id/button11"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toEndOf="@+id/button8"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintTop_toBottomOf="@+id/button7"
+        app:layout_constraintVertical_bias="0.18" />
 
     <Button
         android:id="@+id/button11"
