@@ -16,7 +16,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button signup;
+    Button signin, signup;
 
 
     @Override
@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        signup = (Button) findViewById(R.id.submit);
+        signin = (Button) findViewById(R.id.signin);
+        signup = (Button) findViewById(R.id.signup);
 
         System.out.println("Hello I like to bake Donuts");
 
