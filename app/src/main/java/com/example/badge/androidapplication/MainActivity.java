@@ -53,15 +53,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-        public void onClick(View view) {
+        public void login(View view) {
             try {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
             catch (Exception e) {
                 Log.d("Main Activity TRANSFER", e.toString());
             }
+        }
 
-
-           }
+        public void signUp(View view) {
+            try {
+                startActivity(new Intent(MainActivity.this, SignUp.class));
+            }
+            catch (Exception e) {
+                Log.d("Main Activity TRANSFER", e.toString());
+            }
+        }
     }
 
