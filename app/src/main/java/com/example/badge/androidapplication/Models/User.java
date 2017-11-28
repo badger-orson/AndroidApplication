@@ -3,8 +3,8 @@ package com.example.badge.androidapplication.Models;
 import java.util.List;
 
 /**
- * This is a class that creates the info for a new user.
- *
+ * This class is here to make a user exist in the real time.
+ * When a new user is created this is the logic that allows this to happen.
  * Created by badge on 19-Nov-17.
  */
 
@@ -12,8 +12,19 @@ public class User {
     String userName;
     String emailAddress;
     String phoneNumber;
-    List<String> categories;
+    List<QuoteCategory> categories;
     String frequency;
+
+    //Non-Default Constructor
+    public User(String userName, String emailAddress, String phoneNumber, List<QuoteCategory> categories, String frequency ) {
+        this.userName = userName;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.categories = categories;
+        this.frequency = frequency;
+
+    }
+
 
     public String getEmailAddress() {
         return emailAddress;
@@ -39,11 +50,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<String> getCategories() {
+    public List<QuoteCategory> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<String> categories) {
+    public void setCategories(List<QuoteCategory> categories) {
         categories = categories;
     }
 
@@ -54,27 +65,4 @@ public class User {
     public void setFrequency(String frequency) {
         this.frequency = frequency;
     }
-
-
-
-    //Non-default constructor
-
-    /**
-     * This is a non default construtor to create a new user. passing in the necessary values.
-     * @param userName
-     * @param emailAddress
-     * @param phoneNumber
-     * @param categories
-     * @param frequency
-     */
-    public void createNewUser(String userName, String emailAddress, String phoneNumber, List<String> categories, String frequency) {
-
-        this.userName = userName;
-        this.emailAddress = emailAddress;
-        this.phoneNumber = phoneNumber;
-        this.categories = categories;
-        this.frequency = frequency;
-
-    }
-
 }
