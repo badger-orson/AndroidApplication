@@ -3,6 +3,7 @@ package com.example.badge.androidapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -53,7 +54,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         public void onClick(View view) {
+            try {
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+            catch (Exception e) {
+                Log.d("Main Activity TRANSFER", e.toString());
+            }
+
+
            }
     }
 
