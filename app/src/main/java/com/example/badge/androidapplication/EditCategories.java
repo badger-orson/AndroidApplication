@@ -8,6 +8,6 @@ public class EditCategories extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_categories);
+        setContentView(R.layout.activity_browse);
     }
 }
