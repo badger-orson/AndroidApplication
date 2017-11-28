@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".HowOftenActivity" />
-        <activity android:name=".EditCategories" />
+        <activity android:name=".Browse" />
+        <activity android:name=".SignUp"></activity>
     </application>
 
 </manifest>
