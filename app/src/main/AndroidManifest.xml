@@ -19,6 +19,8 @@
         <activity android:name=".HowOftenActivity" />
         <activity android:name=".Browse" />
         <activity android:name=".SignUp"></activity>
+        <activity android:name=".QuoteDisplay"></activity>
+        <activity android:name=".LoginActivity"></activity>
     </application>
 
 </manifest>
