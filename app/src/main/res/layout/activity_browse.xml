@@ -107,7 +107,7 @@
         android:id="@+id/button11"
         android:layout_width="255dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:onClick="nextView"
