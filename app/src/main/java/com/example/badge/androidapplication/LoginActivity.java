@@ -1,5 +1,6 @@
 package com.example.badge.androidapplication;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,11 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 toastMessage("Successfully signed out.");
             }
         }
-    };
-
-
-
-
+        };
     }
 
 
@@ -79,7 +76,8 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
 
+    public void nextView(View view) {
 
-
-
+        startActivity(new Intent(this, Browse.class));
+    }
 }
