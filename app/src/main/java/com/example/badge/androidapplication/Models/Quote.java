@@ -16,6 +16,11 @@ public class Quote {
         imageURL = null;
     }
     //Non-Default Constructor
+    public Quote(String quoteText) {
+        this.quoteText = quoteText;
+
+    }
+
     public Quote(String quoteText, String quoteSource, String imageURL) {
         this.quoteText = quoteText;
         this.quoteSource = quoteSource;

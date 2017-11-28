@@ -30,16 +30,12 @@ public class MainActivity extends AppCompatActivity {
 
         FireBase fb = new FireBase();
 
-        List<QuoteCategory> qcList = new ArrayList<>();
+
+        Quote q = new Quote("Just Do IT!! Just Do it!!!", "NA", "NA");
 
 
-        Quote q = new Quote("Hello", "NA", "NA");
-        QuoteCategory qc = QuoteCategory.Funny;
 
-
-        qcList.add(qc = QuoteCategory.Inspiration);
-
-        fb.addNewQuote(q, qc);
+        fb.addMotivationalQ(q);
 
         //User user  = new User("badgero1234@icloud.com", "badgero1234@icloud.com", "2089700157", qcList, "weekly" );
 
