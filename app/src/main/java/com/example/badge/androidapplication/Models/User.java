@@ -9,11 +9,23 @@ import java.util.List;
  */
 
 public class User {
-    String userName;
-    String emailAddress;
-    String phoneNumber;
-    List<QuoteCategory> categories;
-    String frequency;
+    private String userName;
+    private String emailAddress;
+    private String phoneNumber;
+    private List<QuoteCategory> categories;
+    private String frequency;
+
+
+
+
+    public User() {
+        this.userName = userName;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.categories = categories;
+        this.frequency = frequency;
+
+    }
 
     //Non-Default Constructor
     public User(String userName, String emailAddress, String phoneNumber, List<QuoteCategory> categories, String frequency ) {

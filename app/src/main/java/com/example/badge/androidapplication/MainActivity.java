@@ -30,14 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         System.out.println("Hello I like to bake Donuts");
 
-        FireBase fb = new FireBase();
 
-
-        Quote q = new Quote("Just Do IT!! Just Do it!!!", "NA", "NA");
-
-
-
-        fb.addMotivationalQ(q);
 
         //User user  = new User("badgero1234@icloud.com", "badgero1234@icloud.com", "2089700157", qcList, "weekly" );
 
