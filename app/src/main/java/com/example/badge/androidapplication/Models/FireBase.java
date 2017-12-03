@@ -53,6 +53,7 @@ public class FireBase {
         mDataBase.child("Categories/" + category + "/Quotes/" + i).setValue(quote);
     }
 
+
     /**
     * This method will get all of the quotes in the "Categories/Funny/Quotes/" and return it in a
     * list.

@@ -12,7 +12,7 @@ public class User {
     private String userName;
     private String emailAddress;
     private String phoneNumber;
-    private List<QuoteCategory> categories;
+    private List<NotificationFrequency> categories;
     private String frequency;
 
 
@@ -28,7 +28,7 @@ public class User {
     }
 
     //Non-Default Constructor
-    public User(String userName, String emailAddress, String phoneNumber, List<QuoteCategory> categories, String frequency ) {
+    public User(String userName, String emailAddress, String phoneNumber, List<NotificationFrequency> categories, String frequency ) {
         this.userName = userName;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
@@ -62,11 +62,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<QuoteCategory> getCategories() {
+    public List<NotificationFrequency> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<QuoteCategory> categories) {
+    public void setCategories(List<NotificationFrequency> categories) {
         categories = categories;
     }
 
