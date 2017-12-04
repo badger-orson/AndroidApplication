@@ -11,7 +11,7 @@ public class HowOftenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_how_often);
+        setContentView(R.layout.settings);
     }
 
     public void nextView(View view) {
