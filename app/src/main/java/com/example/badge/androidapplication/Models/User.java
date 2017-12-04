@@ -28,12 +28,12 @@ public class User {
     }
 
     //Non-Default Constructor
-    public User(String userName, String emailAddress, String phoneNumber, List<NotificationFrequency> categories, String frequency ) {
+    public User(String userName, String emailAddress, String phoneNumber, List<NotificationFrequency> categories ) {
         this.userName = userName;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
         this.categories = categories;
-        this.frequency = frequency;
+
 
     }
 

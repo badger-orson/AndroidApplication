@@ -39,7 +39,11 @@ public class SignUp extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        appUser.setUserName(currentUser.toString());
+        try {
+            appUser.setUserName(currentUser.toString());
+        } catch (Exception e) {
+            Log.d(TAG, "onStart: " + e.toString());
+        }
     }
 
 
