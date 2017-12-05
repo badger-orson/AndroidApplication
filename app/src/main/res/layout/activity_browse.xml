@@ -39,7 +39,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="48dp"
         android:onClick="nextView"
-        android:text="Fitness Motivation"
+        android:text="Fitness"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
@@ -66,7 +66,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:onClick="nextView"
-        android:text="Teamwork"
+        android:text="Life"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
@@ -81,7 +81,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="20dp"
         android:onClick="nextView"
-        android:text="Poetry Quotes"
+        android:text="Wisdom"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.Button"
         app:layout_constraintBottom_toTopOf="@+id/button11"
         app:layout_constraintStart_toStartOf="parent"
@@ -117,7 +117,6 @@
         android:text="Browse Quotes"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button

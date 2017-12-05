@@ -85,7 +85,7 @@
         android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
-        android:text="Fitness Motivation"
+        android:text="Fitness"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         app:layout_constraintBottom_toTopOf="@+id/textView8"
         app:layout_constraintStart_toStartOf="parent" />
@@ -107,7 +107,7 @@
         android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
-        android:text="Teamwork"
+        android:text="Wisdom"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         app:layout_constraintBottom_toTopOf="@+id/textView10"
         app:layout_constraintStart_toStartOf="parent" />
@@ -118,7 +118,7 @@
         android:layout_height="30dp"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="16dp"
-        android:text="Poetry Quotes"
+        android:text="Life"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
         app:layout_constraintBottom_toTopOf="@+id/textView11"
         app:layout_constraintStart_toStartOf="parent" />
