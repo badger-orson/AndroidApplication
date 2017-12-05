@@ -7,14 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.badge.androidapplication.Models.FireBase;
-import com.example.badge.androidapplication.Models.Quote;
-import com.example.badge.androidapplication.Models.QuoteCategory;
-import com.example.badge.androidapplication.Models.User;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
     Button signin, signup;

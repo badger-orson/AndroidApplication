@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Android Application</string>
+    <string name="app_name">MoQuo</string>
     <string name="title_activity__how__often">HowOften</string>
 
     <!-- Strings related to Settings -->
