@@ -36,19 +36,6 @@ public class Browse extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
 
-
-
-        //Quote q = new Quote("Just Do IT!! Just Do it!!!", "NA", "NA");
-
-//        //Get the current instance of a user.
-//        mAuth = FirebaseAuth.getInstance();
-//
-//        fb.addFunnyQ(q);
-//
-//        FirebaseUser fbu = mAuth.getCurrentUser();
-//
-//        fb.getUser(fbu);
-//        fq = fb.getFunnyQuotes();
     }
 
     public void nextView(View view) {
@@ -87,24 +74,40 @@ public class Browse extends AppCompatActivity {
         }
     }
 
-    public void Test(View view) {
-        try {
-            Intent intent = new Intent(this, QuoteDisplay.class);
-            Quote quote = new Quote();
-            quote.setQuoteText("Hello World");
-            quote.setQuoteSource("Someone new");
-            Log.d("Quote toString()", "HERE\'S A QUOTE: " + quote.getQuoteText());
-
-            //Serialize Quote to JSON
-            Gson gson = new Gson();
-            String quoteJson = gson.toJson(quote, Quote.class);
-            intent.putExtra(EXTRA_MESSAGE, quoteJson);
-
-            startActivity(intent);
-        }
-        catch (Exception e) {
-            Log.d("Main Activity TRANSFER", e.toString());
-        }
-    }
+//    public void Test(View view) {
+//        try {
+//            Intent intent = new Intent(this, QuoteDisplay.class);
+//            Quote quote = new Quote();
+//            quote.setQuoteText("Hello World");
+//            quote.setQuoteSource("Someone new");
+//            Log.d("Quote toString()", "HERE\'S A QUOTE: " + quote.getQuoteText());
+//
+//            //Serialize Quote to JSON
+//            Gson gson = new Gson();
+//            String quoteJson = gson.toJson(quote, Quote.class);
+//            intent.putExtra(EXTRA_MESSAGE, quoteJson);
+//
+//            startActivity(intent);
+//        }
+//        catch (Exception e) {
+//            Log.d("Main Activity TRANSFER", e.toString());
+//        }
+//    }
 
 }
+
+
+
+
+
+//Quote q = new Quote("Just Do IT!! Just Do it!!!", "NA", "NA");
+
+//        //Get the current instance of a user.
+//        mAuth = FirebaseAuth.getInstance();
+//
+//        fb.addFunnyQ(q);
+//
+//        FirebaseUser fbu = mAuth.getCurrentUser();
+//
+//        fb.getUser(fbu);
+//        fq = fb.getFunnyQuotes();

@@ -12,12 +12,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.badge.androidapplication.Controllers.FireBase;
+import com.example.badge.androidapplication.Models.Quote;
 import com.example.badge.androidapplication.Models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SignUp extends AppCompatActivity {
 
@@ -28,10 +32,11 @@ public class SignUp extends AppCompatActivity {
 
     private EditText email, password, name,phone;
     private Button submit;
-
+    List<Quote> quotes = new ArrayList<>();
 
     private FireBase fb = new FireBase();
     private User appUser = new User();
+
 
 
     @Override
@@ -44,6 +49,8 @@ public class SignUp extends AppCompatActivity {
         } catch (Exception e) {
             Log.d(TAG, "onStart: " + e.toString());
         }
+
+        quotes = fb.getFunnyQuotes();
     }
 
 
