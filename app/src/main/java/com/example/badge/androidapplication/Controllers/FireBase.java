@@ -1,9 +1,12 @@
-package com.example.badge.androidapplication.Models;
+package com.example.badge.androidapplication.Controllers;
 
 import android.app.AlertDialog;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.badge.androidapplication.Models.Quote;
+import com.example.badge.androidapplication.Models.QuoteCategory;
+import com.example.badge.androidapplication.Models.User;
 import com.example.badge.androidapplication.SignUp;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
