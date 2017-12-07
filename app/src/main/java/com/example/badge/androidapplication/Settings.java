@@ -6,6 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.badge.androidapplication.Models.NotificationFrequency;
+import com.example.badge.androidapplication.Models.QuoteCategory;
+
+import static com.example.badge.androidapplication.Models.QuoteCategory.Fitness;
+
 public class Settings extends AppCompatActivity {
 
     @Override
@@ -22,112 +27,114 @@ public class Settings extends AppCompatActivity {
         switch(view.getId()) {
             case R.id._d_fitness:
                 if (checked){
-                    // Put some meat on the sandwich
+                    QuoteCategory category = null;
+                    category = category.Fitness;
+                    NotificationFrequency NF = new NotificationFrequency(category,1);
+
+
                 }
-            else
-                break;
-            case R.id._w_fitness:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._m_fitness:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._d_funny:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._w_funny:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._m_funny:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._d_inspiration:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._w_inspiration:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._m_inspiration:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._d_life:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._w_life:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._m_life:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._d_love:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._w_love:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._m_love:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._d_wisdom:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._w_wisdom:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
-            case R.id._m_wisdom:
-                if (checked){
-                    // Put some meat on the sandwich
-                }
-                else
-                    break;
+//            case R.id._w_fitness:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._m_fitness:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._d_funny:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._w_funny:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._m_funny:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._d_inspiration:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._w_inspiration:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._m_inspiration:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._d_life:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._w_life:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._m_life:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._d_love:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._w_love:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._m_love:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._d_wisdom:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._w_wisdom:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
+//            case R.id._m_wisdom:
+//                if (checked){
+//                    // Put some meat on the sandwich
+//                }
+//                else
+//                    break;
         }
     }
 
