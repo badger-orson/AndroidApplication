@@ -1,7 +1,5 @@
 package com.example.badge.androidapplication.Controllers;
 
-import android.util.Log;
-
 import com.example.badge.androidapplication.Models.Quote;
 import com.example.badge.androidapplication.Models.QuoteCategory;
 
@@ -33,11 +31,11 @@ public class QuoteController {
                 case Inspiration:
                     quotes = fireBase.getInspirationalQuotes();
                     break;
-                case Exercise:
-                    quotes = fireBase.getExcerciseQuotes();
+                case Fitness:
+                    quotes = fireBase.getFitnessQuotes();
                     break;
-                case Motivation:
-                    quotes = fireBase.getMotivationalQuotes();
+                case Life:
+                    quotes = fireBase.getLifeQuotes();
                     break;
                 default:
                     throw new Exception("Invalid Category");

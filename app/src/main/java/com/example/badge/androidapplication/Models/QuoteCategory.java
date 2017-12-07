@@ -6,9 +6,9 @@ package com.example.badge.androidapplication.Models;
 
 public enum QuoteCategory {
     Funny,
-    Exercise,
+    Fitness,
     Inspiration,
-    Motivation,
-    Poetic,
+    Life,
+    Wisdom,
     Love,
 }
