@@ -114,7 +114,7 @@ public class LoginActivity extends AppCompatActivity {
     private boolean validateForm() {
         boolean valid = true;
 
-        String ema = email.getText().toString();
+        String ema = email.getText().toString().trim();
         if (TextUtils.isEmpty(ema)) {
             email.setError("Required.");
             valid = false;
@@ -122,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
             email.setError(null);
         }
 
-        String pas = password.getText().toString();
+        String pas = password.getText().toString().trim();
         if (TextUtils.isEmpty(pas)) {
             password.setError("Required.");
             valid = false;
