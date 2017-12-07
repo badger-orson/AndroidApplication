@@ -32,10 +32,10 @@ public class QuoteController {
                     quotes = fireBase.getInspirationalQuotes();
                     break;
                 case Fitness:
-                    quotes = fireBase.getExcerciseQuotes();
+                    quotes = fireBase.getFitnessQuotes();
                     break;
-                case Wisdom:
-                    quotes = fireBase.getMotivationalQuotes();
+                case Life:
+                    quotes = fireBase.getLifeQuotes();
                     break;
                 default:
                     throw new Exception("Invalid Category");

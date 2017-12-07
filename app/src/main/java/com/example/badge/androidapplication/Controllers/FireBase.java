@@ -14,7 +14,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
 * The Point of this class is to create a dynamic API
@@ -32,8 +31,6 @@ public class FireBase {
     private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
 
     //Initialize private variables
-    private Random rand = new Random();
-    private int i = rand.nextInt(999999999); //I wanted to see if I had to use push. Turns out no
     private User appUser = new User(); //This is where I will store a user.
 
 
@@ -49,7 +46,7 @@ public class FireBase {
     public void addFunnyQ(Quote quote){
         mDataBase = FirebaseDatabase.getInstance().getReference();
         QuoteCategory category = QuoteCategory.Funny;
-        mDataBase.child("Categories/" + category + "/Quotes/" + i).setValue(quote);
+        mDataBase.child("Categories/" + category + "/Quotes/").push().setValue(quote);
     }
 
 
@@ -69,8 +66,6 @@ public class FireBase {
                 for (DataSnapshot quotesSnapshot : dataSnapshot.getChildren()) {
                     Quote quote = quotesSnapshot.getValue(Quote.class);
                     quotes.add(quote);
-                    //Tasks.await( quotes);
-
                 }
             }
 
@@ -91,7 +86,7 @@ public class FireBase {
     public void addInspirationalQ(Quote quote){
         mDataBase = FirebaseDatabase.getInstance().getReference();
         QuoteCategory category = QuoteCategory.Inspiration;
-        mDataBase.child("Categories/" + category + "/Quotes/" + i).setValue(quote);
+        mDataBase.child("Categories/" + category + "/Quotes/").push().setValue(quote);
     }
 
     /**
@@ -126,17 +121,17 @@ public class FireBase {
     * that current section as seen above.
     * @param quote
     **/
-    public void addExerciseQ(Quote quote){
+    public void addFitnessQ(Quote quote){
         mDataBase = FirebaseDatabase.getInstance().getReference();
         QuoteCategory category = QuoteCategory.Fitness;
-        mDataBase.child("Categories/" + category + "/Quotes/" + i).setValue(quote);
+        mDataBase.child("Categories/" + category + "/Quotes/").push().setValue(quote);
     }
 
     /**
     * This method will get all of the quotes in the "Categories/Fitness/Quotes/" and return it in a
     * @return List<Quote>
     **/
-    public List<Quote> getExcerciseQuotes() {
+    public List<Quote> getFitnessQuotes() {
         mDataBase = FirebaseDatabase.getInstance().getReference();
         QuoteCategory category = QuoteCategory.Fitness;
         final List<Quote> quotes = new ArrayList<>();
@@ -159,23 +154,23 @@ public class FireBase {
     }
 
     /**
-    * This method will add a quote to the "Categories/Wisdom/Quotes/" storing in the Firebase DB
+    * This method will add a quote to the "Categories/Life/Quotes/" storing in the Firebase DB
     * that current section as seen above.
     * @param quote
     **/
-    public void addMotivationalQ(Quote quote){
+    public void addLifeQ(Quote quote){
         mDataBase = FirebaseDatabase.getInstance().getReference();
-        QuoteCategory category = QuoteCategory.Wisdom;
-        mDataBase.child("Categories/" + category + "/Quotes/" + i ).setValue(quote);
+        QuoteCategory category = QuoteCategory.Life;
+        mDataBase.child("Categories/" + category + "/Quotes/").push().setValue(quote);
     }
 
     /**
-    * This method will get all of the quotes in the "Categories/Wisdom/Quotes/" and return it in a
+    * This method will get all of the quotes in the "Categories/Life/Quotes/" and return it in a
     * @return List<Quote>
     **/
-    public List<Quote> getMotivationalQuotes() {
+    public List<Quote> getLifeQuotes() {
         mDataBase = FirebaseDatabase.getInstance().getReference();
-        QuoteCategory category = QuoteCategory.Wisdom;
+        QuoteCategory category = QuoteCategory.Life;
         final List<Quote> quotes = new ArrayList<>();
         mDataBase.child("Categories/" + category + "/Quotes/").addValueEventListener(new ValueEventListener() {
 
@@ -196,20 +191,20 @@ public class FireBase {
     }
 
 
-    public void addPoeticQ(Quote quote){
+    public void addWisdomQ(Quote quote){
         mDataBase = FirebaseDatabase.getInstance().getReference();
-        QuoteCategory category = QuoteCategory.Life;
-        mDataBase.child("Categories/" + category + "/Quotes/" + i).setValue(quote);
+        QuoteCategory category = QuoteCategory.Wisdom;
+        mDataBase.child("Categories/" + category + "/Quotes/").push().setValue(quote);
     }
 
     /**
-     * This method will get all of the quotes in the "Categories/Life/Quotes/" and return it in a
+     * This method will get all of the quotes in the "Categories/Wisdom/Quotes/" and return it in a
      * list.
      * @return List<Quote>
      **/
-    public List<Quote> getPoeticQuotes() {
+    public List<Quote> getWisdomQuotes() {
         mDataBase = FirebaseDatabase.getInstance().getReference();
-        QuoteCategory category = QuoteCategory.Life;
+        QuoteCategory category = QuoteCategory.Wisdom;
         final List<Quote> quotes = new ArrayList<>();
         mDataBase.child("Categories/" + category + "/Quotes/").addValueEventListener(new ValueEventListener() {
 
@@ -234,7 +229,7 @@ public class FireBase {
     public void addLoveQ(Quote quote){
         mDataBase = FirebaseDatabase.getInstance().getReference();
         QuoteCategory category = QuoteCategory.Love;
-        mDataBase.child("Categories/" + category + "/Quotes/" + i).setValue(quote);
+        mDataBase.child("Categories/" + category + "/Quotes/").push().setValue(quote);
     }
 
 
@@ -254,8 +249,6 @@ public class FireBase {
                 for (DataSnapshot quotesSnapshot : dataSnapshot.getChildren()) {
                     Quote quote = quotesSnapshot.getValue(Quote.class);
                     quotes.add(quote);
-                    //Tasks.await( quotes);
-
                 }
             }
 

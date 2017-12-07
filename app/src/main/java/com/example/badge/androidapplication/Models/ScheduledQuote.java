@@ -14,7 +14,7 @@ public class ScheduledQuote {
     //Default Constructor
     public ScheduledQuote() {
         time = new Date();
-        category = QuoteCategory.Wisdom;
+        category = QuoteCategory.Life;
         muted = false;
     }
     //Getters & Setters

@@ -8,7 +8,7 @@ public enum QuoteCategory {
     Funny,
     Fitness,
     Inspiration,
-    Wisdom,
     Life,
+    Wisdom,
     Love,
 }
