@@ -25,7 +25,7 @@ public class Settings extends AppCompatActivity {
 
         // Check which checkbox was clicked
         switch(view.getId()) {
-            case R.id._d_fitness:
+            case R.id._d_fitness: //hello
                 if (checked){
                     QuoteCategory category = null;
                     category = category.Fitness;
