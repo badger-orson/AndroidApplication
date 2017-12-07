@@ -8,6 +8,8 @@ import com.example.badge.androidapplication.Models.Quote;
 import com.example.badge.androidapplication.Models.QuoteCategory;
 import com.example.badge.androidapplication.Models.User;
 import com.example.badge.androidapplication.SignUp;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -73,6 +75,8 @@ public class FireBase {
                 for (DataSnapshot quotesSnapshot : dataSnapshot.getChildren()) {
                     Quote quote = quotesSnapshot.getValue(Quote.class);
                     quotes.add(quote);
+                    //Tasks.await( quotes);
+
                 }
             }
 
@@ -81,6 +85,7 @@ public class FireBase {
 
             }
         });
+
         return quotes;
     }
 
@@ -196,6 +201,80 @@ public class FireBase {
         return quotes;
     }
 
+
+    public void addPoeticQ(Quote quote){
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        QuoteCategory category = QuoteCategory.Poetic;
+        mDataBase.child("Categories/" + category + "/Quotes/" + i).setValue(quote);
+    }
+
+    /**
+     * This method will get all of the quotes in the "Categories/Poetic/Quotes/" and return it in a
+     * list.
+     * @return List<Quote>
+     **/
+    public List<Quote> getPoeticQuotes() {
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        QuoteCategory category = QuoteCategory.Poetic;
+        final List<Quote> quotes = new ArrayList<>();
+        mDataBase.child("Categories/" + category + "/Quotes/").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot quotesSnapshot : dataSnapshot.getChildren()) {
+                    Quote quote = quotesSnapshot.getValue(Quote.class);
+                    quotes.add(quote);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        return quotes;
+    }
+
+
+    public void addLoveQ(Quote quote){
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        QuoteCategory category = QuoteCategory.Love;
+        mDataBase.child("Categories/" + category + "/Quotes/" + i).setValue(quote);
+    }
+
+
+    /**
+     * This method will get all of the quotes in the "Categories/Love/Quotes/" and return it in a
+     * list.
+     * @return List<Quote>
+     **/
+    public List<Quote> getLoveQuotes() {
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        QuoteCategory category = QuoteCategory.Love;
+        final List<Quote> quotes = new ArrayList<>();
+        mDataBase.child("Categories/" + category + "/Quotes/").addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot quotesSnapshot : dataSnapshot.getChildren()) {
+                    Quote quote = quotesSnapshot.getValue(Quote.class);
+                    quotes.add(quote);
+                    //Tasks.await( quotes);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        return quotes;
+    }
+
+
     /**
     * This will add a new user to the DB underneath the User/{uniqueID}This is very handy, because
     * it will link the user and their account together allowing them to store all data for the
@@ -213,6 +292,9 @@ public class FireBase {
 
         }
     }
+
+
+
 
     /**
      * This will return the current state of the user in the Firebase DB. This happens asynchronous

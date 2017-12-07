@@ -9,5 +9,6 @@ public enum QuoteCategory {
     Exercise,
     Inspiration,
     Motivation,
-
+    Poetic,
+    Love,
 }
