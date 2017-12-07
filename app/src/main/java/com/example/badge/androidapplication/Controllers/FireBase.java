@@ -2,6 +2,7 @@ package com.example.badge.androidapplication.Controllers;
 
 import android.util.Log;
 
+import com.example.badge.androidapplication.Models.NotificationFrequency;
 import com.example.badge.androidapplication.Models.Quote;
 import com.example.badge.androidapplication.Models.QuoteCategory;
 import com.example.badge.androidapplication.Models.User;
@@ -280,7 +281,17 @@ public class FireBase {
         }
     }
 
+    public void addUserCatagories(List <NotificationFrequency> categories, FirebaseUser firebaseUser){
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        //String key = user.userName.toString() + "/";
+        try {
+            mDataBase.child("Users/").child(firebaseUser.getUid()).child("Categories/").setValue(categories);
+        }
+        catch (Exception e){
+            Log.d(TAG, "addUserCategories: " + e.toString());
 
+        }
+    }
 
 
     /**

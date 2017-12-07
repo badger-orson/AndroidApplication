@@ -49,8 +49,6 @@ public class SignUp extends AppCompatActivity {
         } catch (Exception e) {
             Log.d(TAG, "onStart: " + e.toString());
         }
-
-        quotes = fb.getFunnyQuotes();
     }
 
 
@@ -102,7 +100,7 @@ public class SignUp extends AppCompatActivity {
                             appUser.setEmailAddress(e);
                             appUser.setUserName(n);
 
-                            fb.addNewUser(appUser ,user);
+                            //fb.addNewUser(appUser ,user); Uncomment for the code to work and signup for real.
                             nextView();
                         } else {
                             // If sign in fails, display a message to the user.
