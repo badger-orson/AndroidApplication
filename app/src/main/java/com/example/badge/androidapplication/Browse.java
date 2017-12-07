@@ -1,8 +1,12 @@
 package com.example.badge.androidapplication;
 
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.util.JsonWriter;
 import android.util.Log;
 import android.view.View;
@@ -72,6 +76,28 @@ public class Browse extends AppCompatActivity {
         catch (Exception e) {
             Log.d("Main Activity TRANSFER", e.toString());
         }
+    }
+
+    public void testNotif(View view) {
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        android.support.v4.app.NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.common_full_open_on_phone)
+                        .setContentTitle("My notification")
+                        .setContentText("Hello World!");
+
+        Intent intent = new Intent(this, QuoteDisplay.class);
+
+        PendingIntent resultPendingIntent =
+                PendingIntent.getActivity(
+                        this,
+                        0,
+                        intent,
+                        PendingIntent.FLAG_UPDATE_CURRENT
+                );
+        mBuilder.setContentIntent(resultPendingIntent);
+
+        manager.notify(001, mBuilder.build());
     }
 
 //    public void Test(View view) {
