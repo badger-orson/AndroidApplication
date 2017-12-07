@@ -150,7 +150,7 @@ public class SignUp extends AppCompatActivity {
 
     public void nextView() {
         try {
-            startActivity(new Intent(this, HowOftenActivity.class));
+            startActivity(new Intent(this, Settings.class));
         }
         catch (Exception e) {
             Log.d("Main Activity TRANSFER", e.toString());

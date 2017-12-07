@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HowOftenActivity" />
+        <activity android:name=".Settings" />
         <activity android:name=".Browse" />
         <activity android:name=".SignUp"></activity>
         <activity android:name=".QuoteDisplay"></activity>

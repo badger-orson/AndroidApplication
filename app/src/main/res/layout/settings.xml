@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.badge.androidapplication.HowOftenActivity">
+    tools:context="com.example.badge.androidapplication.Settings">
 
     <TextView
         android:id="@+id/Message"
@@ -149,20 +149,20 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/_d_teamwork"
+        app:layout_constraintBottom_toTopOf="@+id/_d_wisdom"
         app:layout_constraintStart_toEndOf="@+id/textView8" />
 
     <CheckBox
-        android:id="@+id/_d_teamwork"
+        android:id="@+id/_d_wisdom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/_d_poetry"
+        app:layout_constraintBottom_toTopOf="@+id/_d_life"
         app:layout_constraintStart_toEndOf="@+id/textView9" />
 
     <CheckBox
-        android:id="@+id/_d_poetry"
+        android:id="@+id/_d_life"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -198,22 +198,22 @@
         app:layout_constraintStart_toEndOf="@+id/_d_love" />
 
     <CheckBox
-        android:id="@+id/_w_poetry"
+        android:id="@+id/_w_life"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="20dp"
         app:layout_constraintBottom_toTopOf="@+id/_w_love"
-        app:layout_constraintStart_toEndOf="@+id/_d_poetry" />
+        app:layout_constraintStart_toEndOf="@+id/_d_life" />
 
     <CheckBox
-        android:id="@+id/_w_teamwork"
+        android:id="@+id/_w_wisdom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/_w_poetry"
-        app:layout_constraintStart_toEndOf="@+id/_d_teamwork" />
+        app:layout_constraintBottom_toTopOf="@+id/_w_life"
+        app:layout_constraintStart_toEndOf="@+id/_d_wisdom" />
 
     <CheckBox
         android:id="@+id/_w_funny"
@@ -221,7 +221,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/_w_teamwork"
+        app:layout_constraintBottom_toTopOf="@+id/_w_wisdom"
         app:layout_constraintStart_toEndOf="@+id/_d_funny" />
 
     <CheckBox
@@ -252,25 +252,25 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/_m_teamwork"
+        app:layout_constraintBottom_toTopOf="@+id/_m_wisdom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.617"
         app:layout_constraintStart_toEndOf="@+id/_w_funny" />
 
     <CheckBox
-        android:id="@+id/_m_teamwork"
+        android:id="@+id/_m_wisdom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/_m_poetry"
+        app:layout_constraintBottom_toTopOf="@+id/_m_life"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.617"
-        app:layout_constraintStart_toEndOf="@+id/_w_teamwork" />
+        app:layout_constraintStart_toEndOf="@+id/_w_wisdom" />
 
     <CheckBox
-        android:id="@+id/_m_poetry"
+        android:id="@+id/_m_life"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -279,7 +279,7 @@
         app:layout_constraintBottom_toTopOf="@+id/_m_love"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.617"
-        app:layout_constraintStart_toEndOf="@+id/_w_poetry" />
+        app:layout_constraintStart_toEndOf="@+id/_w_life" />
 
     <CheckBox
         android:id="@+id/_m_love"
