@@ -1,15 +1,10 @@
 package com.example.badge.androidapplication.Controllers;
 
-import android.app.AlertDialog;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.badge.androidapplication.Models.Quote;
 import com.example.badge.androidapplication.Models.QuoteCategory;
 import com.example.badge.androidapplication.Models.User;
-import com.example.badge.androidapplication.SignUp;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,7 +14,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Random;
 
 /**
@@ -128,23 +122,23 @@ public class FireBase {
     }
 
     /**
-    * This method will add a quote to the "Categories/Exercise/Quotes/" storing in the Firebase DB
+    * This method will add a quote to the "Categories/Fitness/Quotes/" storing in the Firebase DB
     * that current section as seen above.
     * @param quote
     **/
     public void addExerciseQ(Quote quote){
         mDataBase = FirebaseDatabase.getInstance().getReference();
-        QuoteCategory category = QuoteCategory.Exercise;
+        QuoteCategory category = QuoteCategory.Fitness;
         mDataBase.child("Categories/" + category + "/Quotes/" + i).setValue(quote);
     }
 
     /**
-    * This method will get all of the quotes in the "Categories/Exercise/Quotes/" and return it in a
+    * This method will get all of the quotes in the "Categories/Fitness/Quotes/" and return it in a
     * @return List<Quote>
     **/
     public List<Quote> getExcerciseQuotes() {
         mDataBase = FirebaseDatabase.getInstance().getReference();
-        QuoteCategory category = QuoteCategory.Exercise;
+        QuoteCategory category = QuoteCategory.Fitness;
         final List<Quote> quotes = new ArrayList<>();
         mDataBase.child("Categories/" + category + "/Quotes/").addValueEventListener(new ValueEventListener() {
 
@@ -165,23 +159,23 @@ public class FireBase {
     }
 
     /**
-    * This method will add a quote to the "Categories/Motivation/Quotes/" storing in the Firebase DB
+    * This method will add a quote to the "Categories/Wisdom/Quotes/" storing in the Firebase DB
     * that current section as seen above.
     * @param quote
     **/
     public void addMotivationalQ(Quote quote){
         mDataBase = FirebaseDatabase.getInstance().getReference();
-        QuoteCategory category = QuoteCategory.Motivation;
+        QuoteCategory category = QuoteCategory.Wisdom;
         mDataBase.child("Categories/" + category + "/Quotes/" + i ).setValue(quote);
     }
 
     /**
-    * This method will get all of the quotes in the "Categories/Motivation/Quotes/" and return it in a
+    * This method will get all of the quotes in the "Categories/Wisdom/Quotes/" and return it in a
     * @return List<Quote>
     **/
     public List<Quote> getMotivationalQuotes() {
         mDataBase = FirebaseDatabase.getInstance().getReference();
-        QuoteCategory category = QuoteCategory.Motivation;
+        QuoteCategory category = QuoteCategory.Wisdom;
         final List<Quote> quotes = new ArrayList<>();
         mDataBase.child("Categories/" + category + "/Quotes/").addValueEventListener(new ValueEventListener() {
 
@@ -204,18 +198,18 @@ public class FireBase {
 
     public void addPoeticQ(Quote quote){
         mDataBase = FirebaseDatabase.getInstance().getReference();
-        QuoteCategory category = QuoteCategory.Poetic;
+        QuoteCategory category = QuoteCategory.Life;
         mDataBase.child("Categories/" + category + "/Quotes/" + i).setValue(quote);
     }
 
     /**
-     * This method will get all of the quotes in the "Categories/Poetic/Quotes/" and return it in a
+     * This method will get all of the quotes in the "Categories/Life/Quotes/" and return it in a
      * list.
      * @return List<Quote>
      **/
     public List<Quote> getPoeticQuotes() {
         mDataBase = FirebaseDatabase.getInstance().getReference();
-        QuoteCategory category = QuoteCategory.Poetic;
+        QuoteCategory category = QuoteCategory.Life;
         final List<Quote> quotes = new ArrayList<>();
         mDataBase.child("Categories/" + category + "/Quotes/").addValueEventListener(new ValueEventListener() {
 

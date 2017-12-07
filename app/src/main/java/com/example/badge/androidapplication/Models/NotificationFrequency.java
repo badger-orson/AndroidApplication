@@ -9,6 +9,12 @@ public class NotificationFrequency {
     public QuoteCategory category;
     public int frequency;
 
+    public NotificationFrequency(QuoteCategory category, int frequency) {
+        this.category = category;
+        this.frequency = frequency;
+        //1=day 2=week 3=month
+    }
+
     public QuoteCategory getCategory() {
         return category;
     }

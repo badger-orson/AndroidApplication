@@ -1,7 +1,5 @@
 package com.example.badge.androidapplication.Controllers;
 
-import android.util.Log;
-
 import com.example.badge.androidapplication.Models.Quote;
 import com.example.badge.androidapplication.Models.QuoteCategory;
 
@@ -33,10 +31,10 @@ public class QuoteController {
                 case Inspiration:
                     quotes = fireBase.getInspirationalQuotes();
                     break;
-                case Exercise:
+                case Fitness:
                     quotes = fireBase.getExcerciseQuotes();
                     break;
-                case Motivation:
+                case Wisdom:
                     quotes = fireBase.getMotivationalQuotes();
                     break;
                 default:
