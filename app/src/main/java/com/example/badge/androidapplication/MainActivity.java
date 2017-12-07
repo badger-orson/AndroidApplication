@@ -51,8 +51,8 @@ public class MainActivity extends AppCompatActivity {
         QuoteCategory quoteCategory = getRandomCategory();
         getQuotes(quoteCategory);
 
-
-
+//
+//
 //        //Inspiration    *******************************************************************//
 //        q.setQuoteText("The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart.");
 //        q.setQuoteSource("Helen Keller");
