@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MAIN ACTIVITY:" ;
     Button signin, signup;
     List<Quote> ql = new ArrayList<>();
-    TextView quoteV;
+    TextView quoteV, authorV;
 
     DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
     Quote q = new Quote();
@@ -40,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        signin = (Button)   findViewById(R.id.signin);
-        signup = (Button)   findViewById(R.id.signup);
-        quoteV = (TextView) findViewById(R.id.quote);
-
+        signin =  (Button)   findViewById(R.id.signin);
+        signup =  (Button)   findViewById(R.id.signup);
+        quoteV =  (TextView) findViewById(R.id.quote);
+       // authorV = (TextView) findViewById(R.id.author);
 
         System.out.println("Hello I like to bake Donuts");
 
@@ -497,7 +498,8 @@ public class MainActivity extends AppCompatActivity {
                 final int i = rand.nextInt((max - min));
                 try {
                     q = ql.get(i);
-                    quoteV.setText(q.getQuoteText());
+                    quoteV.setText("\t\t\t\t\t" + q.getQuoteText() + "\n\n\t\t\t\t\t-" + q.getQuoteSource());
+
                 }catch (Exception e) {
                     Log.d(TAG, "onDataChange: " + e.toString());
                 }
