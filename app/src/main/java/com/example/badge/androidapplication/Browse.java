@@ -10,6 +10,7 @@ import android.support.v7.app.NotificationCompat;
 import android.util.JsonWriter;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.badge.androidapplication.Controllers.FireBase;
 import com.example.badge.androidapplication.Controllers.QuoteController;
@@ -24,6 +25,8 @@ import java.util.List;
 public class Browse extends AppCompatActivity {
 
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private QuoteController quoteCtrl;
+    private QuoteCategory category;
 
     //Create storage for the quotes to use. On the next view.
     private List<Quote> funnyQuotes = new ArrayList<>();
@@ -31,7 +34,7 @@ public class Browse extends AppCompatActivity {
     private List<Quote> motivationQuotes = new ArrayList<>();
     private List<Quote> exerciseQuotes = new ArrayList<>();
 
-    private FireBase fb = new FireBase();
+    //private FireBase fb = new FireBase();
 
     public static final String EXTRA_MESSAGE = "DisplayQuote";
 
@@ -40,17 +43,10 @@ public class Browse extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
 
+        quoteCtrl = new QuoteController();
     }
 
-    public void nextView(View view) {
-        try {
-            startActivity(new Intent(this, QuoteDisplay.class));
-        }
-        catch (Exception e) {
-            Log.d("Main Activity TRANSFER", e.toString());
-        }
-    }
-
+    //Go to Settings page
     public void settings(View view) {
         try {
             startActivity(new Intent(this, Settings.class));
@@ -60,10 +56,35 @@ public class Browse extends AppCompatActivity {
         }
     }
 
+    //Displays a Quote
     public void displayQuote(View view) {
+        int id = view.getId();
+
+        switch(id) {
+            case R.id.inspiration_button:
+                category = QuoteCategory.Inspiration;
+                break;
+            case R.id.fitness_button:
+                category = QuoteCategory.Fitness;
+                break;
+            case R.id.funny_button:
+                category = QuoteCategory.Funny;
+                break;
+            case R.id.life_button:
+                category = QuoteCategory.Life;
+                break;
+            case R.id.wisdom_button:
+                category = QuoteCategory.Wisdom;
+                break;
+            case R.id.love_button:
+                category = QuoteCategory.Love;
+                break;
+            default:
+                return;
+        }
         try {
             Intent intent = new Intent(this, QuoteDisplay.class);
-            Quote quote = QuoteController.getRandomQuote(QuoteCategory.Funny);
+            Quote quote = quoteCtrl.getRandomQuote(category);
             Log.d("Quote toString()", "HERE\'S A QUOTE: " + quote.getQuoteText());
 
             //Serialize Quote to JSON
