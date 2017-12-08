@@ -46,15 +46,140 @@ public class MainActivity extends AppCompatActivity {
         quoteV =  (TextView) findViewById(R.id.quote);
        // authorV = (TextView) findViewById(R.id.author);
 
-        System.out.println("Hello I like to bake Donuts");
-
-
         QuoteCategory quoteCategory = getRandomCategory();
         getQuotes(quoteCategory);
 
 //
 //
-//        //Inspiration    *******************************************************************//
+//
+    }
+
+
+    private QuoteCategory getRandomCategory() {
+        //Create a new random number with a range of 0 - 5
+        Random rand = new Random();
+        int min = 0;
+        int max = 5;
+
+        int i = rand.nextInt((max - min) + 1);
+        QuoteCategory quoteCategory = null;
+
+        switch (i) {
+            case 0:
+                quoteCategory = quoteCategory.Wisdom;
+                break;
+            case 1:
+                quoteCategory = quoteCategory.Love;
+                break;
+            case 2:
+                quoteCategory = quoteCategory.Inspiration;
+                break;
+            case 3:
+                quoteCategory = quoteCategory.Funny;
+                break;
+            case 4:
+                quoteCategory = quoteCategory.Life;
+                break;
+            case 5:
+                quoteCategory = quoteCategory.Fitness;
+                break;
+            default:
+                try {
+                    throw new Exception("Invalid Category");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+        }
+
+        return quoteCategory;
+    }
+
+
+    private void getQuotes(QuoteCategory category) {
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+
+        switch (category) {
+            case Wisdom:
+                ql = fb.getWisdomQuotes();
+                break;
+            case Love:
+                ql = fb.getLoveQuotes();
+                break;
+            case Inspiration:
+                ql = fb.getInspirationalQuotes();
+                break;
+            case Life:
+                ql = fb.getLifeQuotes();
+                break;
+            case Fitness:
+                ql = fb.getFitnessQuotes();
+                break;
+            case Funny:
+                ql = fb.getFunnyQuotes();
+                break;
+            default:
+                try {
+                    throw new Exception("Invalid Category");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+        }
+
+
+
+        mDataBase.child("Categories/" + category + "/Quotes/").addValueEventListener(new ValueEventListener() {
+
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                int max = ql.size();
+                int min = 0;
+
+                Random rand = new Random();
+
+                final int i = rand.nextInt((max - min));
+                try {
+                    q = ql.get(i);
+                    quoteV.setText("\t\t\t\t\t" + q.getQuoteText() + "\n\n\t\t\t\t\t-" + q.getQuoteSource());
+
+                }catch (Exception e) {
+                    Log.d(TAG, "onDataChange: " + e.toString());
+                }
+
+                // Do all of the logic here .... If you are setting some text then do it here.
+                // So in the browse set a thing that will switch between the quote topics.
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+
+
+        public void login(View view) {
+            try {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+            catch (Exception e) {
+                Log.d("Main Activity TRANSFER", e.toString());
+            }
+        }
+
+        public void signUp(View view) {
+            try {
+                startActivity(new Intent(MainActivity.this, SignUp.class));
+            }
+            catch (Exception e) {
+                Log.d("Main Activity TRANSFER", e.toString());
+            }
+        }
+
+        public void fillDatabase() {
+          //Inspiration    *******************************************************************//
 //        q.setQuoteText("The best and most beautiful things in the world cannot be seen or even touched - they must be felt with the heart.");
 //        q.setQuoteSource("Helen Keller");
 //        ql.add(q);
@@ -399,9 +524,9 @@ public class MainActivity extends AppCompatActivity {
 //        }
 
 
-        //User user  = new User("badgero1234@icloud.com", "badgero1234@icloud.com", "2089700157", qcList, "weekly" );
+            //User user  = new User("badgero1234@icloud.com", "badgero1234@icloud.com", "2089700157", qcList, "weekly" );
 
-        //fb.addNewUser(user);
+            //fb.addNewUser(user);
 
 
 //        signup.setOnClickListener(new View.OnClickListener() {
@@ -410,130 +535,6 @@ public class MainActivity extends AppCompatActivity {
 //                startActivity(new Intent(MainActivity.this, LoginActivity.class));
 //            }
 //        });
-    }
-
-
-    private QuoteCategory getRandomCategory() {
-        //Create a new random number with a range of 0 - 5
-        Random rand = new Random();
-        int min = 0;
-        int max = 5;
-
-        int i = rand.nextInt((max - min) + 1);
-        QuoteCategory quoteCategory = null;
-
-        switch (i) {
-            case 0:
-                quoteCategory = quoteCategory.Wisdom;
-                break;
-            case 1:
-                quoteCategory = quoteCategory.Love;
-                break;
-            case 2:
-                quoteCategory = quoteCategory.Inspiration;
-                break;
-            case 3:
-                quoteCategory = quoteCategory.Funny;
-                break;
-            case 4:
-                quoteCategory = quoteCategory.Life;
-                break;
-            case 5:
-                quoteCategory = quoteCategory.Fitness;
-                break;
-            default:
-                try {
-                    throw new Exception("Invalid Category");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-        }
-
-        return quoteCategory;
-    }
-
-
-    private void getQuotes(QuoteCategory category) {
-        mDataBase = FirebaseDatabase.getInstance().getReference();
-
-        switch (category) {
-            case Wisdom:
-                ql = fb.getWisdomQuotes();
-                break;
-            case Love:
-                ql = fb.getLoveQuotes();
-                break;
-            case Inspiration:
-                ql = fb.getInspirationalQuotes();
-                break;
-            case Life:
-                ql = fb.getLifeQuotes();
-                break;
-            case Fitness:
-                ql = fb.getFitnessQuotes();
-                break;
-            case Funny:
-                ql = fb.getFunnyQuotes();
-                break;
-            default:
-                try {
-                    throw new Exception("Invalid Category");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-        }
-
-
-
-        mDataBase.child("Categories/" + category + "/Quotes/").addValueEventListener(new ValueEventListener() {
-
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                int max = ql.size();
-                int min = 0;
-
-                Random rand = new Random();
-
-                final int i = rand.nextInt((max - min));
-                try {
-                    q = ql.get(i);
-                    quoteV.setText("\t\t\t\t\t" + q.getQuoteText() + "\n\n\t\t\t\t\t-" + q.getQuoteSource());
-
-                }catch (Exception e) {
-                    Log.d(TAG, "onDataChange: " + e.toString());
-                }
-
-                // Do all of the logic here .... If you are setting some text then do it here.
-                // So in the browse set a thing that will switch between the quote topics.
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-    }
-
-
-
-
-        public void login(View view) {
-            try {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-            }
-            catch (Exception e) {
-                Log.d("Main Activity TRANSFER", e.toString());
-            }
-        }
-
-        public void signUp(View view) {
-            try {
-                startActivity(new Intent(MainActivity.this, SignUp.class));
-            }
-            catch (Exception e) {
-                Log.d("Main Activity TRANSFER", e.toString());
-            }
         }
     }
 
