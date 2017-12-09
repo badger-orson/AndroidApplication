@@ -1,5 +1,6 @@
 package com.example.badge.androidapplication;
 
+import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.badge.androidapplication.Controllers.FireBase;
+import com.example.badge.androidapplication.Controllers.NotificationController;
 import com.example.badge.androidapplication.Controllers.QuoteController;
 import com.example.badge.androidapplication.Models.Quote;
 import com.example.badge.androidapplication.Models.QuoteCategory;
@@ -125,24 +127,14 @@ public class Browse extends AppCompatActivity {
 
     public void testNotif(View view) {
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        android.support.v4.app.NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.common_full_open_on_phone)
-                        .setContentTitle("My notification")
-                        .setContentText("Hello World!");
+        NotificationController ctrl = new NotificationController(this);
 
-        Intent intent = new Intent(this, QuoteDisplay.class);
-
-        PendingIntent resultPendingIntent =
-                PendingIntent.getActivity(
-                        this,
-                        0,
-                        intent,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
-        mBuilder.setContentIntent(resultPendingIntent);
-
-        manager.notify(001, mBuilder.build());
+        try {
+            Notification notif = ctrl.getNotification(QuoteCategory.Inspiration);
+            manager.notify(001, notif);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 //    public void Test(View view) {

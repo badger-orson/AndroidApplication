@@ -10,6 +10,7 @@ import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.app.Notification;
 
 import com.example.badge.androidapplication.Controllers.FireBase;
 import com.example.badge.androidapplication.Controllers.NotificationController;
@@ -190,6 +191,14 @@ public class Settings extends AppCompatActivity {
 //            }
         //fb.getUser(currentFirebaseUser);
         getUsers(currentFirebaseUser);
+
+        //Schedule Notifications
+        try {
+            //setAll();
+            test();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public void onCheckboxClicked(View view) {
@@ -423,6 +432,15 @@ public class Settings extends AppCompatActivity {
 
         //get the Current Data of the Firebase User with our Firebase Controller
         getUsers(currentFirebaseUser);
+
+        //Schedule Notifications
+        try {
+            //setAll();
+            test();
+        } catch (Exception e) {
+            Log.d("Settings.java", "Failed to set notifications");
+            e.printStackTrace();
+        }
     }
 
 
@@ -603,27 +621,44 @@ public class Settings extends AppCompatActivity {
         });
     }
 
-    public void setNotification(String type, String frequency) throws Exception {
+    //Schedules an individual notifications
+    public void setNotification(QuoteCategory type, int delay) throws Exception {
 
         try {
             Notification notif = notifCtrl.getNotification(type);
-            notifCtrl.scheduleNotification(notif, 2000, type);
+            notifCtrl.scheduleNotification(notif, delay, type);
         } catch (Exception e) {
             throw e;
         }
     }
 
+    //Cancels all previously scheduled notifications
     public void cancelAll() {
 
     }
 
+    //Updates all notifications
     public void setAll() throws Exception {
         cancelAll();
 
         try {
-
+            for (NotificationFrequency nf : notificationFrequencies) {
+                QuoteCategory category = nf.getCategory();
+                int frequency = nf.getFrequency();
+            }
         } catch (Exception e) {
             throw e;
+        }
+    }
+
+    public void test() {
+        try {
+            setNotification(QuoteCategory.Fitness, 2000);
+            //setNotification(QuoteCategory.Funny, 2000);
+            //setNotification(QuoteCategory.Love, 3000);
+            //notifCtrl.cancel(0);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

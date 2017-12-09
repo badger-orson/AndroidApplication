@@ -4,12 +4,15 @@ import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.SystemClock;
 import android.support.v7.app.NotificationCompat;
+import android.util.Log;
 
 import com.example.badge.androidapplication.Models.QuoteCategory;
 import com.example.badge.androidapplication.QuoteDisplay;
@@ -23,7 +26,6 @@ import com.example.badge.androidapplication.R;
 
 public class NotificationController {
 
-    private NotificationManager manager;
     private Context context;
 
     //Notification IDs
@@ -35,17 +37,16 @@ public class NotificationController {
     public static final int LOVE_ID = 006;
 
     public NotificationController(Context context) {
-        manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         this.context = context;
     }
 
     //Creates a Notification of a specified type
-    public Notification getNotification(String type) throws Exception {
+    public Notification getNotification(QuoteCategory type) throws Exception {
 
         //Verify category
         int id;
         try {
-            id = convertStringToID(type);
+            id = convertCategoryToID(type);
         } catch (Exception e) {
             throw e;
         }
@@ -64,7 +65,7 @@ public class NotificationController {
 
         //Create intent
         Intent intent = new Intent(context, QuoteDisplay.class);
-        intent.putExtra("extra", type);
+        intent.putExtra("extra", convertCategoryToString(type));
 
         //Create pending intent
         PendingIntent resultPendingIntent =
@@ -76,16 +77,17 @@ public class NotificationController {
                 );
         mBuilder.setContentIntent(resultPendingIntent);
 
+        Log.d("NotificationController", "Built a notification");
         return mBuilder.build();
     }
 
     //Schedules a notification
-    public void scheduleNotification(Notification notification, int delay, String type) throws Exception {
+    public void scheduleNotification(Notification notification, int delay, QuoteCategory type) throws Exception {
 
         //Determine category
         int id;
         try {
-            id = convertStringToID(type);
+            id = convertCategoryToID(type);
         } catch (Exception e) {
             throw e;
         }
@@ -98,25 +100,63 @@ public class NotificationController {
         long futureInMillis = SystemClock.elapsedRealtime() + delay;
         AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+
+        Log.d("NotificationController", "Scheduled a notification");
     }
 
     //Converts a string to a category ID number
-    public int convertStringToID(String id) throws Exception {
+    public static int convertCategoryToID(QuoteCategory id) throws Exception {
         switch(id) {
-            case "Inspiration":
+            case Inspiration:
                 return INSPIRATION_ID;
-            case "Fitness":
+            case Fitness:
                 return FITNESS_ID;
-            case "Funny":
+            case Funny:
                 return FUNNY_ID;
-            case "Wisdom":
+            case Wisdom:
                 return WISDOM_ID;
-            case "Life":
+            case Life:
                 return LIFE_ID;
-            case "Love":
+            case Love:
                 return LOVE_ID;
             default:
                 throw new Exception("INVALID ID STRING");
         }
+    }
+
+    //Converts QuoteCategory to string
+    public static String convertCategoryToString(QuoteCategory id) throws Exception {
+        switch(id) {
+            case Inspiration:
+                return "Inspiration";
+            case Fitness:
+                return "Fitness";
+            case Funny:
+                return "Funny";
+            case Wisdom:
+                return "Wisdom";
+            case Life:
+                return "Life";
+            case Love:
+                return "Love";
+            default:
+                throw new Exception("INVALID CATEGORY");
+        }
+    }
+
+    //Cancels a reminder
+    public void cancel(int id) {
+
+        //Disable receiver
+        ComponentName receiver = new ComponentName(context, NotificationPublisher.class);
+        PackageManager pm = context.getPackageManager();
+        pm.setComponentEnabledSetting(receiver,PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+
+        Intent intent = new Intent(context, NotificationPublisher.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+
+        alarmManager.cancel(pendingIntent);
+        pendingIntent.cancel();
     }
 }
