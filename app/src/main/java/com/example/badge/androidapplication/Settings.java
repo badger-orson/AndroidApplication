@@ -6,6 +6,8 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.view.View;
 import android.widget.CheckBox;
 
 import com.example.badge.androidapplication.Controllers.FireBase;
+import com.example.badge.androidapplication.Controllers.NotificationController;
 import com.example.badge.androidapplication.Controllers.NotificationPublisher;
 import com.example.badge.androidapplication.Models.NotificationFrequency;
 import com.example.badge.androidapplication.Models.QuoteCategory;
@@ -40,6 +43,7 @@ public class Settings extends AppCompatActivity {
     private User appUser = new User();
     private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
     private List<NotificationFrequency> notificationFrequencies = new ArrayList<>();
+    private NotificationController notifCtrl = new NotificationController(this);
 
 
 
@@ -417,8 +421,12 @@ public class Settings extends AppCompatActivity {
         //get the Current Data of the Firebase User with our Firebase Controller
         getUsers(currentFirebaseUser);
 
-        //Test notifications
-        testNotif();
+        //Schedule notifications
+        try {
+            setAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -463,40 +471,27 @@ public class Settings extends AppCompatActivity {
         });
     }
 
-    private void scheduleNotification(Notification notification, int delay) {
+    public void setNotification(String type, String frequency) throws Exception {
 
-        Intent notificationIntent = new Intent(this, NotificationPublisher.class);
-        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
-        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        long futureInMillis = SystemClock.elapsedRealtime() + delay;
-        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+        try {
+            Notification notif = notifCtrl.getNotification(type);
+            notifCtrl.scheduleNotification(notif, 2000, type);
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
-    public void testNotif() {
+    public void cancelAll() {
 
-            //NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            android.support.v4.app.NotificationCompat.Builder mBuilder =
-                    new NotificationCompat.Builder(this)
-                            .setSmallIcon(R.drawable.ic_notifications_black_24dp)
-                            .setContentTitle("My notification")
-                            .setContentText("Hello World!");
+    }
 
-            Intent intent = new Intent(this, QuoteDisplay.class);
-            intent.putExtra("extra", "Funny");
+    public void setAll() throws Exception {
+        cancelAll();
 
-            PendingIntent resultPendingIntent =
-                    PendingIntent.getActivity(
-                            this,
-                            0,
-                            intent,
-                            PendingIntent.FLAG_UPDATE_CURRENT
-                    );
-            mBuilder.setContentIntent(resultPendingIntent);
-            scheduleNotification(mBuilder.build(), 5000);
+        try {
 
-            //manager.notify(001, mBuilder.build());
+        } catch (Exception e) {
+            throw e;
+        }
     }
 }
