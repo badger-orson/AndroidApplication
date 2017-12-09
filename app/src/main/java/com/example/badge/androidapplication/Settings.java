@@ -281,23 +281,22 @@ public class Settings extends AppCompatActivity {
 
 
 
-
     private void getUsers(final FirebaseUser firebaseUser) {
         mDataBase = FirebaseDatabase.getInstance().getReference();
 
         mDataBase.child("Users/" + firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
-
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                appUser = fb.getUser(firebaseUser);
+                notificationFrequencies = fb.getUserCatagories(firebaseUser);
+
                 // Do all of the logic here .... If you are setting some text then do it here.
                 // So in the browse set a thing that will switch between the quote topics.
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                Log.d(TAG, "onCancelled: " + databaseError.toString());
             }
         });
     }
