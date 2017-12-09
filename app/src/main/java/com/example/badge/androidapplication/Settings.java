@@ -43,8 +43,21 @@ public class Settings extends AppCompatActivity {
 
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        appUser = fb.getUser(currentFirebaseUser);
+        fb.getUser(currentFirebaseUser);
         getUsers(currentFirebaseUser);
+
+//        List<NotificationFrequency> selectionList = fb.getUserCatagories(currentFirebaseUser);
+//        for (NotificationFrequency selection: selectionList){
+//            if (selection.category == QuoteCategory.Fitness) {
+//                if (selection.frequency == 1) {
+//                    final CheckBox checkBox = (CheckBox) findViewById(R.id._d_fitness);
+//                    if (!checkBox.isChecked()) {
+//                        checkBox.setChecked(true);
+//                    }
+//                }
+//            }
+//
+//        }
 
     }
 
@@ -281,22 +294,46 @@ public class Settings extends AppCompatActivity {
 
 
 
+
     private void getUsers(final FirebaseUser firebaseUser) {
         mDataBase = FirebaseDatabase.getInstance().getReference();
 
         mDataBase.child("Users/" + firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                notificationFrequencies = fb.getUserCatagories(firebaseUser);
+                List<NotificationFrequency> selectionList = fb.getUserCatagories(firebaseUser);
+                for (NotificationFrequency selection: selectionList){
+                    if (selection.category == QuoteCategory.Fitness) {
+                        if (selection.frequency == 1) {
+                            final CheckBox checkBox = (CheckBox) findViewById(R.id._d_fitness);
+                            if (!checkBox.isChecked()) {
+                                checkBox.setChecked(true);
+                            }
+                        }
+                    }
 
+                }
+
+//                List<NotificationFrequency> selectionList = fb.getUserCatagories(firebaseUser);
+//                for (NotificationFrequency selection: notificationFrequencies){
+//                    if (selection.category == QuoteCategory.Fitness){
+//                        if (selection.frequency == 1){
+//                            CheckBox cb = (CheckBox)findViewById(R.id._d_fitness);
+//                            cb.setChecked(true);
+//                        }
+//                    }
+//                    ;
+//
+//                }
                 // Do all of the logic here .... If you are setting some text then do it here.
                 // So in the browse set a thing that will switch between the quote topics.
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "onCancelled: " + databaseError.toString());
+
             }
         });
     }
