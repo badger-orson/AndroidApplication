@@ -485,6 +485,7 @@ public class Settings extends AppCompatActivity {
                             .setContentText("Hello World!");
 
             Intent intent = new Intent(this, QuoteDisplay.class);
+            intent.putExtra("extra", "Funny");
 
             PendingIntent resultPendingIntent =
                     PendingIntent.getActivity(
