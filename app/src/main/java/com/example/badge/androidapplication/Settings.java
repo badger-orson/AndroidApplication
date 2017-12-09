@@ -1,10 +1,5 @@
 package com.example.badge.androidapplication;
 
-import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -41,9 +36,12 @@ public class Settings extends AppCompatActivity {
     private FireBase fb = new FireBase();
     private FirebaseAuth mAuth;
     private User appUser = new User();
+    private FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
     private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
     private List<NotificationFrequency> notificationFrequencies = new ArrayList<>();
     private NotificationController notifCtrl = new NotificationController(this);
+    List <NotificationFrequency> categories = new ArrayList<>();
 
 
 
@@ -52,7 +50,7 @@ public class Settings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings);
 
-        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 //THIS WAS ME MAKING SURE I KNEW HOW TO SET THEM CHECKED, IT WORKS
 //        boolean isChecked = true;
 //        CheckBox fit1 = (CheckBox)findViewById(R.id._d_fitness);
@@ -61,140 +59,144 @@ public class Settings extends AppCompatActivity {
 //        CheckBox fit2 = (CheckBox)findViewById(R.id._m_fitness);
 //        fit2.setChecked(isChecked);
 
+        notificationFrequencies = fb.getUserCatagories(currentFirebaseUser);
+
+
 
         //ORSON RIGHT HERE, IT'S NEVER GETTING TO MY LOGIC?
-            List<NotificationFrequency> selectionList = fb.getUserCatagories(currentFirebaseUser);
-            for (NotificationFrequency selection : selectionList) {
-                if (selection.category == QuoteCategory.Fitness) {
-                    //Daily Fitness
-                    if (selection.frequency == 1) {
-                        boolean isChecked = true;
-                        CheckBox fit1 = (CheckBox)findViewById(R.id._d_fitness);
-                        fit1.setChecked(isChecked);
-                    }
-                    //Weekly Fitness
-                    if (selection.frequency == 2) {
-                        boolean isChecked = true;
-                        CheckBox fit2 = (CheckBox)findViewById(R.id._w_fitness);
-                        fit2.setChecked(isChecked);
-                    }
-                    //Monthly Fitness
-                    if (selection.frequency == 3) {
-                        boolean isChecked = true;
-                        CheckBox fit3 = (CheckBox)findViewById(R.id._m_fitness);
-                        fit3.setChecked(isChecked);
-                    }
-                }
-                if (selection.category == QuoteCategory.Funny) {
-                    //Daily Funny
-                    if (selection.frequency == 1) {
-                        boolean isChecked = true;
-                        CheckBox cb1 = (CheckBox)findViewById(R.id._d_funny);
-                        cb1.setChecked(isChecked);
-                    }
-                    //Weekly Funny
-                    if (selection.frequency == 2) {
-                        boolean isChecked = true;
-                        CheckBox cb1 = (CheckBox)findViewById(R.id._w_funny);
-                        cb1.setChecked(isChecked);
-                    }
-                    //Monthly Funny
-                    if (selection.frequency == 3) {
-                        boolean isChecked = true;
-                        CheckBox cb1 = (CheckBox)findViewById(R.id._m_funny);
-                        cb1.setChecked(isChecked);
-                    }
-                }
-                if (selection.category == QuoteCategory.Inspiration) {
-                    //Daily inspiration
-                    if (selection.frequency == 1) {
-                        boolean isChecked = true;
-                        CheckBox cb1 = (CheckBox)findViewById(R.id._d_inspiration);
-                        cb1.setChecked(isChecked);
-                    }
-                    //Weekly inspiration
-                    if (selection.frequency == 2) {
-                        boolean isChecked = true;
-                        CheckBox cb1 = (CheckBox)findViewById(R.id._w_inspiration);
-                        cb1.setChecked(isChecked);
-                    }
-                    //Monthly inspiration
-                    if (selection.frequency == 3) {
-                        boolean isChecked = true;
-                        CheckBox cb1 = (CheckBox)findViewById(R.id._m_inspiration);
-                        cb1.setChecked(isChecked);
-                    }
-                }
-                if (selection.category == QuoteCategory.Love) {
-                    //Daily Love
-                    if (selection.frequency == 1) {
-                        boolean isChecked = true;
-                        CheckBox cb1 = (CheckBox)findViewById(R.id._d_love);
-                        cb1.setChecked(isChecked);
-                    }
-                    //Weekly Love
-                    if (selection.frequency == 2) {
-                        boolean isChecked = true;
-                        CheckBox cb1 = (CheckBox)findViewById(R.id._w_love);
-                        cb1.setChecked(isChecked);
-                    }
-                    //Monthly Love
-                    if (selection.frequency == 3) {
-                        boolean isChecked = true;
-                        CheckBox cb1 = (CheckBox)findViewById(R.id._m_love);
-                        cb1.setChecked(isChecked);
-                    }
-                }
-                if (selection.category == QuoteCategory.Life) {
-                    //Daily Life
-                    if (selection.frequency == 1) {
-                        boolean isChecked = true;
-                        CheckBox cb1 = (CheckBox)findViewById(R.id._d_life);
-                        cb1.setChecked(isChecked);
-                    }
-                    //Weekly Life
-                    if (selection.frequency == 2) {
-                        boolean isChecked = true;
-                        CheckBox cb1 = (CheckBox)findViewById(R.id._w_life);
-                        cb1.setChecked(isChecked);
-                    }
-                    //Monthly Life
-                    if (selection.frequency == 3) {
-                        boolean isChecked = true;
-                        CheckBox cb1 = (CheckBox)findViewById(R.id._m_life);
-                        cb1.setChecked(isChecked);
-                    }
-                }
-                if (selection.category == QuoteCategory.Wisdom) {
-                    //Daily Wisdom
-                    if (selection.frequency == 1) {
-                        boolean isChecked = true;
-                        CheckBox cb1 = (CheckBox)findViewById(R.id._d_wisdom);
-                        cb1.setChecked(isChecked);
-                    }
-                    //Weekly Wisdom
-                    if (selection.frequency == 2) {
-                        boolean isChecked = true;
-                        CheckBox cb1 = (CheckBox)findViewById(R.id._w_wisdom);
-                        cb1.setChecked(isChecked);
-                    }
-                    //Monthly Wisdom
-                    if (selection.frequency == 3) {
-                        boolean isChecked = true;
-                        CheckBox cb1 = (CheckBox)findViewById(R.id._m_wisdom);
-                        cb1.setChecked(isChecked);
-                    }
-                }
-
-            }
-        fb.getUser(currentFirebaseUser);
+//            List<NotificationFrequency> selectionList = fb.getUserCatagories(currentFirebaseUser);
+//            for (NotificationFrequency selection : selectionList) {
+//                if (selection.category == QuoteCategory.Fitness) {
+//                    //Daily Fitness
+//                    if (selection.frequency == 1) {
+//                        boolean isChecked = true;
+//                        CheckBox fit1 = (CheckBox)findViewById(R.id._d_fitness);
+//                        fit1.setChecked(isChecked);
+//                    }
+//                    //Weekly Fitness
+//                    if (selection.frequency == 2) {
+//                        boolean isChecked = true;
+//                        CheckBox fit2 = (CheckBox)findViewById(R.id._w_fitness);
+//                        fit2.setChecked(isChecked);
+//                    }
+//                    //Monthly Fitness
+//                    if (selection.frequency == 3) {
+//                        boolean isChecked = true;
+//                        CheckBox fit3 = (CheckBox)findViewById(R.id._m_fitness);
+//                        fit3.setChecked(isChecked);
+//                    }
+//                }
+//                if (selection.category == QuoteCategory.Funny) {
+//                    //Daily Funny
+//                    if (selection.frequency == 1) {
+//                        boolean isChecked = true;
+//                        CheckBox cb1 = (CheckBox)findViewById(R.id._d_funny);
+//                        cb1.setChecked(isChecked);
+//                    }
+//                    //Weekly Funny
+//                    if (selection.frequency == 2) {
+//                        boolean isChecked = true;
+//                        CheckBox cb1 = (CheckBox)findViewById(R.id._w_funny);
+//                        cb1.setChecked(isChecked);
+//                    }
+//                    //Monthly Funny
+//                    if (selection.frequency == 3) {
+//                        boolean isChecked = true;
+//                        CheckBox cb1 = (CheckBox)findViewById(R.id._m_funny);
+//                        cb1.setChecked(isChecked);
+//                    }
+//                }
+//                if (selection.category == QuoteCategory.Inspiration) {
+//                    //Daily inspiration
+//                    if (selection.frequency == 1) {
+//                        boolean isChecked = true;
+//                        CheckBox cb1 = (CheckBox)findViewById(R.id._d_inspiration);
+//                        cb1.setChecked(isChecked);
+//                    }
+//                    //Weekly inspiration
+//                    if (selection.frequency == 2) {
+//                        boolean isChecked = true;
+//                        CheckBox cb1 = (CheckBox)findViewById(R.id._w_inspiration);
+//                        cb1.setChecked(isChecked);
+//                    }
+//                    //Monthly inspiration
+//                    if (selection.frequency == 3) {
+//                        boolean isChecked = true;
+//                        CheckBox cb1 = (CheckBox)findViewById(R.id._m_inspiration);
+//                        cb1.setChecked(isChecked);
+//                    }
+//                }
+//                if (selection.category == QuoteCategory.Love) {
+//                    //Daily Love
+//                    if (selection.frequency == 1) {
+//                        boolean isChecked = true;
+//                        CheckBox cb1 = (CheckBox)findViewById(R.id._d_love);
+//                        cb1.setChecked(isChecked);
+//                    }
+//                    //Weekly Love
+//                    if (selection.frequency == 2) {
+//                        boolean isChecked = true;
+//                        CheckBox cb1 = (CheckBox)findViewById(R.id._w_love);
+//                        cb1.setChecked(isChecked);
+//                    }
+//                    //Monthly Love
+//                    if (selection.frequency == 3) {
+//                        boolean isChecked = true;
+//                        CheckBox cb1 = (CheckBox)findViewById(R.id._m_love);
+//                        cb1.setChecked(isChecked);
+//                    }
+//                }
+//                if (selection.category == QuoteCategory.Life) {
+//                    //Daily Life
+//                    if (selection.frequency == 1) {
+//                        boolean isChecked = true;
+//                        CheckBox cb1 = (CheckBox)findViewById(R.id._d_life);
+//                        cb1.setChecked(isChecked);
+//                    }
+//                    //Weekly Life
+//                    if (selection.frequency == 2) {
+//                        boolean isChecked = true;
+//                        CheckBox cb1 = (CheckBox)findViewById(R.id._w_life);
+//                        cb1.setChecked(isChecked);
+//                    }
+//                    //Monthly Life
+//                    if (selection.frequency == 3) {
+//                        boolean isChecked = true;
+//                        CheckBox cb1 = (CheckBox)findViewById(R.id._m_life);
+//                        cb1.setChecked(isChecked);
+//                    }
+//                }
+//                if (selection.category == QuoteCategory.Wisdom) {
+//                    //Daily Wisdom
+//                    if (selection.frequency == 1) {
+//                        boolean isChecked = true;
+//                        CheckBox cb1 = (CheckBox)findViewById(R.id._d_wisdom);
+//                        cb1.setChecked(isChecked);
+//                    }
+//                    //Weekly Wisdom
+//                    if (selection.frequency == 2) {
+//                        boolean isChecked = true;
+//                        CheckBox cb1 = (CheckBox)findViewById(R.id._w_wisdom);
+//                        cb1.setChecked(isChecked);
+//                    }
+//                    //Monthly Wisdom
+//                    if (selection.frequency == 3) {
+//                        boolean isChecked = true;
+//                        CheckBox cb1 = (CheckBox)findViewById(R.id._m_wisdom);
+//                        cb1.setChecked(isChecked);
+//                    }
+//                }
+//
+//            }
+        //fb.getUser(currentFirebaseUser);
         getUsers(currentFirebaseUser);
     }
 
     public void onCheckboxClicked(View view) {
         // Is the view now checked?
         boolean checked = ((CheckBox) view).isChecked();
-         NotificationFrequency nf = new NotificationFrequency();
+         NotificationFrequency nf;
+        nf = new NotificationFrequency();
 
 
         // Check which checkbox was clicked
@@ -204,7 +206,8 @@ public class Settings extends AppCompatActivity {
 
             case R.id._d_fitness: //hello
                 QuoteCategory category = QuoteCategory.Fitness;
-                nf = new NotificationFrequency(category, 1);
+                nf.setCategory(category);
+                nf.setFrequency(1);
                 if (checked){
                     notificationFrequencies.add(nf);
                     break;
@@ -420,13 +423,6 @@ public class Settings extends AppCompatActivity {
 
         //get the Current Data of the Firebase User with our Firebase Controller
         getUsers(currentFirebaseUser);
-
-        //Schedule notifications
-        try {
-            setAll();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
 
@@ -435,10 +431,146 @@ public class Settings extends AppCompatActivity {
     private void getUsers(final FirebaseUser firebaseUser) {
         mDataBase = FirebaseDatabase.getInstance().getReference();
 
+        currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+
+        categories = notificationFrequencies;
+
         mDataBase.child("Users/" + firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+
+
+                for (NotificationFrequency selection : categories) {
+                    if (selection.category == QuoteCategory.Fitness) {
+                        //Daily Fitness
+                        if (selection.frequency == 1) {
+                            boolean isChecked = true;
+                            CheckBox fit1 = (CheckBox)findViewById(R.id._d_fitness);
+                            fit1.setChecked(isChecked);
+                        }
+
+                        //Weekly Fitness
+                        if (selection.frequency == 2) {
+                            boolean isChecked = true;
+                            CheckBox fit2 = (CheckBox)findViewById(R.id._w_fitness);
+                            fit2.setChecked(isChecked);
+                        }
+                        //Monthly Fitness
+                        if (selection.frequency == 3) {
+                            boolean isChecked = true;
+                            CheckBox fit3 = (CheckBox)findViewById(R.id._m_fitness);
+                            fit3.setChecked(isChecked);
+                        }
+                    }
+                    if (selection.category == QuoteCategory.Funny) {
+                        //Daily Funny
+                        if (selection.frequency == 1) {
+                            boolean isChecked = true;
+                            CheckBox cb1 = (CheckBox)findViewById(R.id._d_funny);
+                            cb1.setChecked(isChecked);
+                        }
+                        //Weekly Funny
+                        if (selection.frequency == 2) {
+                            boolean isChecked = true;
+                            CheckBox cb1 = (CheckBox)findViewById(R.id._w_funny);
+                            cb1.setChecked(isChecked);
+                        }
+                        //Monthly Funny
+                        if (selection.frequency == 3) {
+                            boolean isChecked = true;
+                            CheckBox cb1 = (CheckBox)findViewById(R.id._m_funny);
+                            cb1.setChecked(isChecked);
+                        }
+                    }
+                    if (selection.category == QuoteCategory.Inspiration) {
+                        //Daily inspiration
+                        if (selection.frequency == 1) {
+                            boolean isChecked = true;
+                            CheckBox cb1 = (CheckBox)findViewById(R.id._d_inspiration);
+                            cb1.setChecked(isChecked);
+                        }
+                        //Weekly inspiration
+                        if (selection.frequency == 2) {
+                            boolean isChecked = true;
+                            CheckBox cb1 = (CheckBox)findViewById(R.id._w_inspiration);
+                            cb1.setChecked(isChecked);
+                        }
+                        //Monthly inspiration
+                        if (selection.frequency == 3) {
+                            boolean isChecked = true;
+                            CheckBox cb1 = (CheckBox)findViewById(R.id._m_inspiration);
+                            cb1.setChecked(isChecked);
+                        }
+                    }
+                    if (selection.category == QuoteCategory.Love) {
+                        //Daily Love
+                        if (selection.frequency == 1) {
+                            boolean isChecked = true;
+                            CheckBox cb1 = (CheckBox)findViewById(R.id._d_love);
+                            cb1.setChecked(isChecked);
+                        }
+                        //Weekly Love
+                        if (selection.frequency == 2) {
+                            boolean isChecked = true;
+                            CheckBox cb1 = (CheckBox)findViewById(R.id._w_love);
+                            cb1.setChecked(isChecked);
+                        }
+                        //Monthly Love
+                        if (selection.frequency == 3) {
+                            boolean isChecked = true;
+                            CheckBox cb1 = (CheckBox)findViewById(R.id._m_love);
+                            cb1.setChecked(isChecked);
+                        }
+                    }
+                    if (selection.category == QuoteCategory.Life) {
+                        //Daily Life
+                        if (selection.frequency == 1) {
+                            boolean isChecked = true;
+                            CheckBox cb1 = (CheckBox)findViewById(R.id._d_life);
+                            cb1.setChecked(isChecked);
+                        }
+                        //Weekly Life
+                        if (selection.frequency == 2) {
+                            boolean isChecked = true;
+                            CheckBox cb1 = (CheckBox)findViewById(R.id._w_life);
+                            cb1.setChecked(isChecked);
+                        }
+                        //Monthly Life
+                        if (selection.frequency == 3) {
+                            boolean isChecked = true;
+                            CheckBox cb1 = (CheckBox)findViewById(R.id._m_life);
+                            cb1.setChecked(isChecked);
+                        }
+                    }
+                    if (selection.category == QuoteCategory.Wisdom) {
+                        //Daily Wisdom
+                        if (selection.frequency == 1) {
+                            boolean isChecked = true;
+                            CheckBox cb1 = (CheckBox)findViewById(R.id._d_wisdom);
+                            cb1.setChecked(isChecked);
+                        }
+                        //Weekly Wisdom
+                        if (selection.frequency == 2) {
+                            boolean isChecked = true;
+                            CheckBox cb1 = (CheckBox)findViewById(R.id._w_wisdom);
+                            cb1.setChecked(isChecked);
+                        }
+                        //Monthly Wisdom
+                        if (selection.frequency == 3) {
+                            boolean isChecked = true;
+                            CheckBox cb1 = (CheckBox)findViewById(R.id._m_wisdom);
+                            cb1.setChecked(isChecked);
+                        }
+                    }
+
+                }
+
+
+
+
+
 
 //                final CheckBox checkBox = (CheckBox) findViewById(R.id._d_fitness);
 //                if (!checkBox.isChecked()) {
