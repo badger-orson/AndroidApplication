@@ -199,8 +199,7 @@ public class Settings extends AppCompatActivity {
 
             case R.id._d_fitness: //hello
                 QuoteCategory category = QuoteCategory.Fitness;
-                nf.setCategory(category);
-                nf.setFrequency(1);
+                nf = new NotificationFrequency(category,1);
                 if (checked){
                     notificationFrequencies.add(nf);
                     break;
