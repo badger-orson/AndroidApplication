@@ -281,18 +281,6 @@ public class FireBase {
         }
     }
 
-    public void addUserCatagories(List <NotificationFrequency> categories, FirebaseUser firebaseUser){
-        mDataBase = FirebaseDatabase.getInstance().getReference();
-        //String key = user.userName.toString() + "/";
-        try {
-            mDataBase.child("Users/").child(firebaseUser.getUid()).child("Categories/").setValue(categories);
-        }
-        catch (Exception e){
-            Log.d(TAG, "addUserCategories: " + e.toString());
-
-        }
-    }
-
 
     /**
      * This will return the current state of the user in the Firebase DB. This happens asynchronous
@@ -317,6 +305,43 @@ public class FireBase {
         });
 
         return appUser;
+    }
+
+
+    public void addUserCatagories(List <NotificationFrequency> categories, FirebaseUser firebaseUser){
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        //String key = user.userName.toString() + "/";
+        try {
+            mDataBase.child("Users/").child(firebaseUser.getUid()).child("Categories/").setValue(categories);
+        }
+        catch (Exception e){
+            Log.d(TAG, "addUserCategories: " + e.toString());
+
+        }
+    }
+
+
+    public List<NotificationFrequency> getUserCatagories(FirebaseUser user) {
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        final List<NotificationFrequency> frequencies = new ArrayList<>();
+
+        mDataBase.child("Users/").child(user.getUid()).child("Categories/").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot notificationF : dataSnapshot.getChildren()) {
+                    NotificationFrequency frequency = notificationF.getValue(NotificationFrequency.class);
+                    frequencies.add(frequency);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "onCancelled: Get User: There was a problem in the request.  ");
+            }
+        });
+
+        return frequencies;
     }
 
 }
