@@ -131,7 +131,7 @@
         android:layout_marginStart="16dp"
         android:text="Love"
         android:textAppearance="@android:style/TextAppearance.Material.Medium"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/submit_button"
         app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
@@ -181,7 +181,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="24dp"
         android:onClick="onCheckboxClicked"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/submit_button"
         app:layout_constraintStart_toEndOf="@+id/textView11" />
 
     <CheckBox
@@ -201,7 +201,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="30dp"
         android:onClick="onCheckboxClicked"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/submit_button"
         app:layout_constraintStart_toEndOf="@+id/_d_love" />
 
     <CheckBox
@@ -304,7 +304,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:onClick="onCheckboxClicked"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/submit_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.617"
         app:layout_constraintStart_toEndOf="@+id/_w_love" />
@@ -323,7 +323,7 @@
         app:layout_constraintStart_toEndOf="@+id/_w_fitness" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/submit_button"
         android:layout_width="255dp"
         android:layout_height="55dp"
         android:layout_marginBottom="52dp"

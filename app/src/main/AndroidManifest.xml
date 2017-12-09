@@ -21,6 +21,7 @@
         <activity android:name=".SignUp"></activity>
         <activity android:name=".QuoteDisplay"></activity>
         <activity android:name=".LoginActivity"></activity>
+        <receiver android:name=".Controllers.NotificationPublisher"/>
     </application>
 
 </manifest>

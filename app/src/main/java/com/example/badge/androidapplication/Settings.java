@@ -1,13 +1,21 @@
 package com.example.badge.androidapplication;
 
+import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 
 import com.example.badge.androidapplication.Controllers.FireBase;
+import com.example.badge.androidapplication.Controllers.NotificationPublisher;
 import com.example.badge.androidapplication.Models.NotificationFrequency;
 import com.example.badge.androidapplication.Models.QuoteCategory;
 import com.example.badge.androidapplication.Models.User;
@@ -277,6 +285,9 @@ public class Settings extends AppCompatActivity {
 
         //get the Current Data of the Firebase User with our Firebase Controller
         getUsers(currentFirebaseUser);
+
+        //Test notifications
+        testNotif();
     }
 
 
@@ -300,5 +311,41 @@ public class Settings extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void scheduleNotification(Notification notification, int delay) {
+
+        Intent notificationIntent = new Intent(this, NotificationPublisher.class);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, 1);
+        notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        long futureInMillis = SystemClock.elapsedRealtime() + delay;
+        AlarmManager alarmManager = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+    }
+
+    public void testNotif() {
+
+            //NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            android.support.v4.app.NotificationCompat.Builder mBuilder =
+                    new NotificationCompat.Builder(this)
+                            .setSmallIcon(R.drawable.ic_notifications_black_24dp)
+                            .setContentTitle("My notification")
+                            .setContentText("Hello World!");
+
+            Intent intent = new Intent(this, QuoteDisplay.class);
+
+            PendingIntent resultPendingIntent =
+                    PendingIntent.getActivity(
+                            this,
+                            0,
+                            intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT
+                    );
+            mBuilder.setContentIntent(resultPendingIntent);
+            scheduleNotification(mBuilder.build(), 5000);
+
+            //manager.notify(001, mBuilder.build());
     }
 }
