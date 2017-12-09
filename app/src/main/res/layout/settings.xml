@@ -14,13 +14,12 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Once a"
+        android:text="I'd like to recieve a text for the following categories once a ...."
         android:textAppearance="@style/TextAppearance.AppCompat.Headline"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="I'd like to recieve a text for the following categories once a ...." />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
@@ -75,6 +74,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/_d_fitness"
         app:layout_constraintStart_toEndOf="@+id/textView3"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -140,6 +140,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="24dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/_d_funny"
         app:layout_constraintStart_toEndOf="@+id/textView7" />
 
@@ -149,6 +150,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="24dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/_d_wisdom"
         app:layout_constraintStart_toEndOf="@+id/textView8" />
 
@@ -158,6 +160,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="24dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/_d_life"
         app:layout_constraintStart_toEndOf="@+id/textView9" />
 
@@ -167,6 +170,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="24dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/_d_love"
         app:layout_constraintStart_toEndOf="@+id/textView10" />
 
@@ -176,6 +180,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="24dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintStart_toEndOf="@+id/textView11" />
 
@@ -184,7 +189,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="30dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/_w_fitness"
         app:layout_constraintStart_toEndOf="@+id/_d_inspiration" />
 
@@ -193,7 +199,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="30dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintStart_toEndOf="@+id/_d_love" />
 
@@ -202,7 +209,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="30dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/_w_love"
         app:layout_constraintStart_toEndOf="@+id/_d_life" />
 
@@ -211,7 +219,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="30dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/_w_life"
         app:layout_constraintStart_toEndOf="@+id/_d_wisdom" />
 
@@ -220,7 +229,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="30dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/_w_wisdom"
         app:layout_constraintStart_toEndOf="@+id/_d_funny" />
 
@@ -231,6 +241,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/_m_fitness"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.617"
@@ -241,7 +252,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="30dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/_w_funny"
         app:layout_constraintStart_toEndOf="@+id/_d_fitness" />
 
@@ -252,6 +264,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/_m_wisdom"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.617"
@@ -264,6 +277,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/_m_life"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.617"
@@ -276,6 +290,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/_m_love"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.617"
@@ -288,6 +303,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.617"
@@ -300,6 +316,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:onClick="onCheckboxClicked"
         app:layout_constraintBottom_toTopOf="@+id/_m_funny"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.617"
