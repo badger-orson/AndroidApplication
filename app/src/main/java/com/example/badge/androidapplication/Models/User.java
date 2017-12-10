@@ -1,6 +1,8 @@
 package com.example.badge.androidapplication.Models;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This class is here to make a user exist in the real time.
@@ -12,29 +14,26 @@ public class User {
     private String userName;
     private String emailAddress;
     private String phoneNumber;
-    private List<NotificationFrequency> categories;
-    private String frequency;
+    public Map<String, Object> categories;
+
 
 
 
 
     public User() {
-        this.userName = userName;
-        this.emailAddress = emailAddress;
-        this.phoneNumber = phoneNumber;
-        this.categories = categories;
-        this.frequency = frequency;
+        this.userName = null;
+        this.emailAddress = null;
+        this.phoneNumber = null;
+        this.categories = new HashMap<>();
 
     }
 
     //Non-Default Constructor
-    public User(String userName, String emailAddress, String phoneNumber, List<NotificationFrequency> categories ) {
+    public User(String userName, String emailAddress, String phoneNumber, Map<String, Object> categories ) {
         this.userName = userName;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
         this.categories = categories;
-
-
     }
 
 
@@ -62,19 +61,12 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<NotificationFrequency> getCategories() {
+    public Map<String, Object> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<NotificationFrequency> categories) {
+    public void setCategories(Map<String, Object> categories) {
         categories = categories;
     }
 
-    public String getFrequency() {
-        return frequency;
-    }
-
-    public void setFrequency(String frequency) {
-        this.frequency = frequency;
-    }
 }

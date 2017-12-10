@@ -1,5 +1,6 @@
 package com.example.badge.androidapplication.Controllers;
 
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.example.badge.androidapplication.Models.NotificationFrequency;
@@ -14,7 +15,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
 * The Point of this class is to create a dynamic API
@@ -320,28 +325,62 @@ public class FireBase {
         }
     }
 
-
-    public List<NotificationFrequency> getUserCatagories(FirebaseUser user) {
+    public void updateUser(User appUser, FirebaseUser firebaseUser){
         mDataBase = FirebaseDatabase.getInstance().getReference();
-        final List<NotificationFrequency> frequencies = new ArrayList<>();
+        //String key = user.userName.toString() + "/";
+//        String cat = categories.category.toString();
+//        int fre = categories.frequency;
+//
+        Map <String, Object > userMap = new HashMap<String, Object>();
+        userMap.put(firebaseUser.getUid(), appUser);
+//
+//        hm.put(cat, fre);
 
-        mDataBase.child("Users/").child(user.getUid()).child("Categories/").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+        try {
+            mDataBase.child("Users/").updateChildren(userMap);
+        }
+        catch (Exception e){
+            Log.d(TAG, "addUserCategories: " + e.toString());
 
-                for (DataSnapshot notificationF : dataSnapshot.getChildren()) {
-                    NotificationFrequency frequency = notificationF.getValue(NotificationFrequency.class);
-                    frequencies.add(frequency);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "onCancelled: Get User: There was a problem in the request.  ");
-            }
-        });
-
-        return frequencies;
+        }
     }
+
+    public void removeUserCatagories(Map categories, FirebaseUser firebaseUser){
+        mDataBase = FirebaseDatabase.getInstance().getReference();
+        //String key = user.userName.toString() + "/";
+        try {
+            String push = mDataBase.child("Users/").child(firebaseUser.getUid()).child("Categories/").getKey();
+            //mDataBase.child(id).removeValue();
+            mDataBase.child("Users/").child(firebaseUser.getUid()).child("Categories/" ).removeValue();
+        }
+        catch (Exception e){
+            Log.d(TAG, "addUserCategories: " + e.toString());
+
+        }
+    }
+
+
+//    public List<Map<String, Object>> getUserCatagories(FirebaseUser user) {
+//        mDataBase = FirebaseDatabase.getInstance().getReference();
+//        final List<NotificationFrequency> frequencies = new ArrayList<>();
+//
+//        mDataBase.child("Users/").child(user.getUid()).child("Categories/").addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//
+//                for (DataSnapshot notificationF : dataSnapshot.getChildren()) {
+//                    User user = notificationF.getValue(User.class);
+//                    frequencies.add(user);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                Log.d(TAG, "onCancelled: Get User: There was a problem in the request.  ");
+//            }
+//        });
+//
+//        return frequencies;
+//    }
 
 }

@@ -100,7 +100,7 @@ public class SignUp extends AppCompatActivity {
                             appUser.setEmailAddress(e);
                             appUser.setUserName(n);
 
-                            //fb.addNewUser(appUser ,user); Uncomment for the code to work and signup for real.
+                            fb.addNewUser(appUser ,user); //Uncomment for the code to work and signup for real.
                             nextView();
                         } else {
                             // If sign in fails, display a message to the user.
