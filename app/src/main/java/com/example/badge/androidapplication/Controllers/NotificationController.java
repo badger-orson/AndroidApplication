@@ -155,6 +155,24 @@ public class NotificationController {
                 throw new Exception("INVALID ID STRING");
         }
     }
+    public static QuoteCategory convertStringTOCAT(String id) throws Exception {
+        switch(id) {
+            case "Inspiration":
+                return QuoteCategory.Inspiration;
+            case "Fitness":
+                return QuoteCategory.Fitness;
+            case "Funny":
+                return QuoteCategory.Funny;
+            case "Wisdom":
+                return QuoteCategory.Wisdom;
+            case "Life":
+                return QuoteCategory.Life;
+            case "Love":
+                return QuoteCategory.Love;
+            default:
+                throw new Exception("INVALID ID STRING");
+        }
+    }
 
     //Converts QuoteCategory to string
     public static String convertCategoryToString(QuoteCategory id) throws Exception {

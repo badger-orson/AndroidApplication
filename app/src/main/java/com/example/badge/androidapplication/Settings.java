@@ -1,5 +1,6 @@
 package com.example.badge.androidapplication;
 
+import android.app.Notification;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.CheckBox;
 
 import com.example.badge.androidapplication.Controllers.FireBase;
+import com.example.badge.androidapplication.Controllers.NotificationController;
 import com.example.badge.androidapplication.Models.NotificationFrequency;
 import com.example.badge.androidapplication.Models.Quote;
 import com.example.badge.androidapplication.Models.QuoteCategory;
@@ -34,13 +36,13 @@ public class Settings extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private User appUser = new User();
     private FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+    private NotificationController notifCtrl =  new NotificationController(this);
 
     private DatabaseReference mDataBase = FirebaseDatabase.getInstance().getReference();
-    private List<Map<String, Object>> notificationFrequencies = new ArrayList<>();
+    private List<Map<String, Object>> notificationFrequencies  = new ArrayList<>();
     Map<String, Object> hashmap = new HashMap<>();
 
 //    CheckBox fit1,fit2,fit3, i1, i2, i3, fun1, fun2, fun3, wis1, wis2, wis3, life1, life2, life3, luv1, luv2, luv3;
-
 
 
     @Override
@@ -189,7 +191,11 @@ public class Settings extends AppCompatActivity {
        // appUser.categories = hm;
 
         fb.updateUser(appUser, currentFirebaseUser);
-        fb.updateUser(appUser, currentFirebaseUser);
+        try {
+            setAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -277,6 +283,7 @@ public class Settings extends AppCompatActivity {
 
                 for (DataSnapshot category : dataSnapshot.child("categories").getChildren()) {
                     appUser.categories.put(category.getKey(), category.getValue());
+                    hashmap = appUser.categories;
                 }
 
 
@@ -290,4 +297,48 @@ public class Settings extends AppCompatActivity {
             }
         });
     }
+
+
+
+    //Schedules an individual notifications
+    public void setNotification(QuoteCategory type, int frequency) throws Exception {
+
+        try {
+            Notification notif = notifCtrl.getNotification(type);
+            notifCtrl.scheduleNotification(notif, frequency, type);
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    //Cancels all previously scheduled notifications
+    public void cancelAll(View v) {
+        notifCtrl.cancelAll();
+    }
+
+    //Updates all notifications
+    public void setAll() throws Exception {
+        try {
+            for (Map.Entry<String, Object> selection : appUser.categories.entrySet()) {
+                String category = selection.getKey();
+                QuoteCategory type = NotificationController.convertStringTOCAT(category);
+                int frequency = (int) selection.getValue();
+                setNotification(type, frequency);
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+
+    public void test() {
+        try {
+            setNotification(QuoteCategory.Fitness, 1);
+            //setNotification(QuoteCategory.Funny, 2000);
+            //setNotification(QuoteCategory.Love, 3000);
+            //notifCtrl.cancel(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
