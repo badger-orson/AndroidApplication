@@ -52,13 +52,6 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.settings);
 
         currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-//THIS WAS ME MAKING SURE I KNEW HOW TO SET THEM CHECKED, IT WORKS
-//        boolean isChecked = true;
-//        CheckBox fit1 = (CheckBox)findViewById(R.id._d_fitness);
-//        fit1.setChecked(isChecked);
-//
-//        CheckBox fit2 = (CheckBox)findViewById(R.id._m_fitness);
-//        fit2.setChecked(isChecked);
 
         notificationFrequencies = fb.getUserCatagories(currentFirebaseUser);
 
