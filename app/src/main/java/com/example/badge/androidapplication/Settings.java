@@ -434,6 +434,7 @@ public class Settings extends AppCompatActivity {
 
         //Schedule Notifications
         try {
+            Log.d("Settings.java", "Attempting to schedule notifications");
             //setAll();
             test();
         } catch (Exception e) {

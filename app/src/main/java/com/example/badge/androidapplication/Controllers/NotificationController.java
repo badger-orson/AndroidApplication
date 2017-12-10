@@ -40,7 +40,7 @@ public class NotificationController {
         this.context = context;
     }
 
-    //Creates a Notification of a specified type
+    //Creates a Notification of a specified category
     public Notification getNotification(QuoteCategory type) throws Exception {
 
         //Verify category
@@ -57,7 +57,7 @@ public class NotificationController {
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(R.drawable.ic_notifications_black_24dp)
                         .setContentTitle("MoQuo")
-                        .setContentText("Check out this cool quote!")
+                        .setContentText("Check out this " + convertCategoryToString(type) + " quote!")
                         .setSound(alarmSound)
                         .setAutoCancel(true)
                         .setPriority(NotificationManager.IMPORTANCE_HIGH)
@@ -71,7 +71,7 @@ public class NotificationController {
         PendingIntent resultPendingIntent =
                 PendingIntent.getActivity(
                         context,
-                        0,
+                        id,
                         intent,
                         PendingIntent.FLAG_UPDATE_CURRENT
                 );
@@ -92,11 +92,13 @@ public class NotificationController {
             throw e;
         }
 
+        //Create receiver
         Intent notificationIntent = new Intent(context, NotificationPublisher.class);
         notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, id);
         notificationIntent.putExtra(NotificationPublisher.NOTIFICATION, notification);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
+        //Set alarm
         long futureInMillis = SystemClock.elapsedRealtime() + delay;
         AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
@@ -145,18 +147,31 @@ public class NotificationController {
     }
 
     //Cancels a reminder
-    public void cancel(int id) {
+    public void cancel(QuoteCategory type) {
 
+        int id = 0;
+        try {
+            id = convertCategoryToID(type);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //Create pending intent to cancel notifications
+        Intent intent = new Intent(context, NotificationPublisher.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        //Cancel alarm
+        AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.cancel(pendingIntent);
+        pendingIntent.cancel();
+
+        Log.d("NotificationController", "Cancelled a notification");
+    }
+
+    public void enable() {
         //Disable receiver
         ComponentName receiver = new ComponentName(context, NotificationPublisher.class);
         PackageManager pm = context.getPackageManager();
-        pm.setComponentEnabledSetting(receiver,PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
-
-        Intent intent = new Intent(context, NotificationPublisher.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-
-        alarmManager.cancel(pendingIntent);
-        pendingIntent.cancel();
+        pm.setComponentEnabledSetting(receiver,PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
     }
 }
