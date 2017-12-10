@@ -39,10 +39,6 @@ public class Settings extends AppCompatActivity {
     private List<Map<String, Object>> notificationFrequencies = new ArrayList<>();
     Map<String, Object> hashmap = new HashMap<>();
 
-//    CheckBox fit1,fit2,fit3, i1, i2, i3, fun1, fun2, fun3, wis1, wis2, wis3, life1, life2, life3, luv1, luv2, luv3;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,7 +75,7 @@ public class Settings extends AppCompatActivity {
         // Check which checkbox was clicked
         switch (view.getId()) {
 
-            case R.id._d_fitness: //hello
+            case R.id._d_fitness:
                 if (checked) {
                     appUser.categories.put("Fitness", 1);
                     break;
@@ -185,29 +181,13 @@ public class Settings extends AppCompatActivity {
         //Get the instance of the FireBase Current user
         FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        //hm.putAll(categories);
-       // appUser.categories = hm;
 
         fb.updateUser(appUser, currentFirebaseUser);
         fb.updateUser(appUser, currentFirebaseUser);
     }
 
-
-
-
-
-
-
-        //Add more categories
-        //fb.addUserCatagories(notificationFrequencies, currentFirebaseUser);
-
-        //get the Current Data of the Firebase User with our Firebase Controller
-
-        //getUsers(currentFirebaseUser);
-   // }
-
     private void setButtonState(Map.Entry<String, Object> selection) {
-
+            //showing the user's current settings when they enter settings
             CheckBox cb1;
             CheckBox cb2;
             CheckBox cb3;
@@ -254,18 +234,14 @@ public class Settings extends AppCompatActivity {
                 cb1.setChecked(false);
                 cb2.setChecked(false);
                 cb3.setChecked(true);
-
             }
+
         }
 
 
 
     private void getUsers(final FirebaseUser firebaseUser) {
         mDataBase = FirebaseDatabase.getInstance().getReference();
-
-        //appUser = fb.getUser(currentFirebaseUser);
-
-        //appUser.categories;
 
         mDataBase.child("Users/" + firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
 
