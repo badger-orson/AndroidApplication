@@ -622,25 +622,23 @@ public class Settings extends AppCompatActivity {
     }
 
     //Schedules an individual notifications
-    public void setNotification(QuoteCategory type, int delay) throws Exception {
+    public void setNotification(QuoteCategory type, int frequency) throws Exception {
 
         try {
             Notification notif = notifCtrl.getNotification(type);
-            notifCtrl.scheduleNotification(notif, delay, type);
+            notifCtrl.scheduleNotification(notif, frequency, type);
         } catch (Exception e) {
             throw e;
         }
     }
 
     //Cancels all previously scheduled notifications
-    public void cancelAll() {
-
+    public void cancelAll(View v) {
+        notifCtrl.cancelAll();
     }
 
     //Updates all notifications
     public void setAll() throws Exception {
-        cancelAll();
-
         try {
             for (NotificationFrequency nf : notificationFrequencies) {
                 QuoteCategory category = nf.getCategory();
@@ -653,7 +651,7 @@ public class Settings extends AppCompatActivity {
 
     public void test() {
         try {
-            setNotification(QuoteCategory.Fitness, 2000);
+            setNotification(QuoteCategory.Fitness, 1);
             //setNotification(QuoteCategory.Funny, 2000);
             //setNotification(QuoteCategory.Love, 3000);
             //notifCtrl.cancel(0);

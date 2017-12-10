@@ -18,6 +18,7 @@ import com.example.badge.androidapplication.Models.QuoteCategory;
 import com.example.badge.androidapplication.QuoteDisplay;
 import com.example.badge.androidapplication.R;
 
+import java.util.Calendar;
 
 
 /**
@@ -82,7 +83,7 @@ public class NotificationController {
     }
 
     //Schedules a notification
-    public void scheduleNotification(Notification notification, int delay, QuoteCategory type) throws Exception {
+    public void scheduleNotification(Notification notification, int frequency, QuoteCategory type) throws Exception {
 
         //Determine category
         int id;
@@ -92,6 +93,18 @@ public class NotificationController {
             throw e;
         }
 
+        //Set date
+        Calendar cal = Calendar.getInstance();
+        Calendar setCal = Calendar.getInstance();
+        setCal.set(Calendar.HOUR_OF_DAY, 17);
+        setCal.set(Calendar.MINUTE, 46);
+        setCal.set(Calendar.SECOND, 0);
+
+        //If time has already passed, set to next day
+        if (setCal.before(cal)) {
+            setCal.add(Calendar.DATE, 1);
+        }
+
         //Create receiver
         Intent notificationIntent = new Intent(context, NotificationPublisher.class);
         notificationIntent.putExtra(NotificationPublisher.NOTIFICATION_ID, id);
@@ -99,9 +112,14 @@ public class NotificationController {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, id, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         //Set alarm
-        long futureInMillis = SystemClock.elapsedRealtime() + delay;
+        long futureInMillis = setCal.getTimeInMillis();
         AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, futureInMillis, AlarmManager.INTERVAL_DAY, pendingIntent);
+
+//        //Set alarm
+//        long futureInMillis = setCal.getTimeInMillis();
+//        AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+//        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, futureInMillis, pendingIntent);
 
         Log.d("NotificationController", "Scheduled a notification");
     }
@@ -168,10 +186,32 @@ public class NotificationController {
         Log.d("NotificationController", "Cancelled a notification");
     }
 
+    //Cancels all previously scheduled notifications
+    public void cancelAll() {
+        cancel(QuoteCategory.Inspiration);
+        cancel(QuoteCategory.Fitness);
+        cancel(QuoteCategory.Funny);
+        cancel(QuoteCategory.Wisdom);
+        cancel(QuoteCategory.Life);
+        cancel(QuoteCategory.Love);
+    }
+
+    //Enables notification receiver
     public void enable() {
-        //Disable receiver
         ComponentName receiver = new ComponentName(context, NotificationPublisher.class);
         PackageManager pm = context.getPackageManager();
         pm.setComponentEnabledSetting(receiver,PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
+    }
+
+    //Deciphers interval
+    public long decipherInterval(int interval) throws Exception{
+        switch (interval) {
+            case 1:
+                return AlarmManager.INTERVAL_DAY;
+            //case 2:
+                //return AlarmManager.
+            default:
+                return 1;
+        }
     }
 }
