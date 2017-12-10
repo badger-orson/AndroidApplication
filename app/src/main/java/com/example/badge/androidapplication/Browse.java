@@ -31,11 +31,15 @@ public class Browse extends AppCompatActivity {
     private static final String TAG = "BROWSE ACTIVITY!!!" ;
 
     public Button inspiration, fitness, wisdom, life, funny, love;
+    private NotificationController notifCtrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_browse);
+
+        //Create controller
+        notifCtrl = new NotificationController(this);
 
         //Declare my variables to be used. These are now assigned to the views buttons.
         inspiration = (Button) findViewById(R.id.inspiration);
@@ -127,11 +131,24 @@ public class Browse extends AppCompatActivity {
 
     public void testNotif(View view) {
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        NotificationController ctrl = new NotificationController(this);
+//        NotificationController ctrl = new NotificationController(this);
+//
+//        try {
+//            Notification notif = ctrl.getNotification(QuoteCategory.Inspiration);
+//            manager.notify(001, notif);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         try {
-            Notification notif = ctrl.getNotification(QuoteCategory.Inspiration);
-            manager.notify(001, notif);
+            Notification notif = notifCtrl.getNotification(QuoteCategory.Funny);
+            Notification notif2 = notifCtrl.getNotification(QuoteCategory.Inspiration);
+            //notifCtrl.enable();
+            //notifCtrl.scheduleNotification(notif, 5000, QuoteCategory.Funny);
+            notifCtrl.scheduleNotification(notif, 2000, QuoteCategory.Funny);
+            notifCtrl.scheduleNotification(notif2, 3000, QuoteCategory.Inspiration);
+            //notifCtrl.cancel(001);
+            //manager.notify(001, notif);
         } catch (Exception e) {
             e.printStackTrace();
         }
