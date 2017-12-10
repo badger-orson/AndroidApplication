@@ -96,13 +96,25 @@ public class NotificationController {
         //Set date
         Calendar cal = Calendar.getInstance();
         Calendar setCal = Calendar.getInstance();
-        setCal.set(Calendar.HOUR_OF_DAY, 17);
-        setCal.set(Calendar.MINUTE, 46);
+        setCal.set(Calendar.HOUR_OF_DAY, 12);
+        setCal.set(Calendar.MINUTE, 0);
         setCal.set(Calendar.SECOND, 0);
+
+
 
         //If time has already passed, set to next day
         if (setCal.before(cal)) {
             setCal.add(Calendar.DATE, 1);
+        }
+
+        //Determine interval
+        long interval = AlarmManager.INTERVAL_DAY; //Daily
+
+        if (frequency == 2) { //Weekly
+            interval *= 7;
+        }
+        else if (frequency == 3){ //Monthly
+            interval *= 30;
         }
 
         //Create receiver
@@ -114,7 +126,7 @@ public class NotificationController {
         //Set alarm
         long futureInMillis = setCal.getTimeInMillis();
         AlarmManager alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, futureInMillis, AlarmManager.INTERVAL_DAY, pendingIntent);
+        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, futureInMillis, interval, pendingIntent);
 
 //        //Set alarm
 //        long futureInMillis = setCal.getTimeInMillis();
@@ -186,7 +198,7 @@ public class NotificationController {
         Log.d("NotificationController", "Cancelled a notification");
     }
 
-    //Cancels all previously scheduled notifications
+    //Cancels all scheduled notifications
     public void cancelAll() {
         cancel(QuoteCategory.Inspiration);
         cancel(QuoteCategory.Fitness);
@@ -203,15 +215,4 @@ public class NotificationController {
         pm.setComponentEnabledSetting(receiver,PackageManager.COMPONENT_ENABLED_STATE_ENABLED, PackageManager.DONT_KILL_APP);
     }
 
-    //Deciphers interval
-    public long decipherInterval(int interval) throws Exception{
-        switch (interval) {
-            case 1:
-                return AlarmManager.INTERVAL_DAY;
-            //case 2:
-                //return AlarmManager.
-            default:
-                return 1;
-        }
-    }
 }
